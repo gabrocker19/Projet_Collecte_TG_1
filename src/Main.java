@@ -8,7 +8,10 @@ public class Main {
         Arc a = new Arc(null, null);
         a.remplir_tableau(Arcs);
         for (Arc arc : Arcs) {
-            arc.afficher_sommet();
+            arc.afficher_arc();
         }
+
+        Itineraire chemin = new Itineraire(new Sommet(0), new Sommet(3));
+        chemin.afficher_itineraire();
     }
 }

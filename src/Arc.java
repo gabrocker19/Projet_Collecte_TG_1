@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class Arc {
     public Sommet s_depart, s_arrivee;
     public int distance;
+    public String nom;
 
     public Arc (Sommet s1, Sommet s2){
         this.s_depart=s1;
@@ -19,8 +20,8 @@ public class Arc {
                 String[] parties = ligne.split(",");
                 int a = Integer.parseInt(parties[0].trim());
                 int b = Integer.parseInt(parties[1].trim());
-                Sommet s1=new Sommet(a,  0);
-                Sommet s2=new Sommet(b, 0);
+                Sommet s1=new Sommet(a);
+                Sommet s2=new Sommet(b);
                 Arc arc=new Arc(s1, s2);
                 Arcs.add(arc);
             }
@@ -29,7 +30,7 @@ public class Arc {
         }
     }
 
-    public void afficher_sommet () {
-        System.out.println(this.s_depart.numero + " " + this.s_arrivee.numero);
+    public void afficher_arc () {
+        System.out.println("Arc : " + this.s_depart.numero + " " + this.s_arrivee.numero);
     }
 }
