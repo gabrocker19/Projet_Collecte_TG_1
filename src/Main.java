@@ -1,31 +1,28 @@
 import java.io.*;
 import java.util.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
-        List<String[]> arcs = new ArrayList<>();
+        ArrayList<Arc> Arcs = new ArrayList<Arc>();
         try (BufferedReader br = new BufferedReader(new FileReader("src\\arcs_test.txt"))) {
             String ligne;
             while ((ligne = br.readLine()) != null) {
-                // Enlève les espaces et sépare les arcs par ";"
-                String[] couples = ligne.trim().split(";");
-                for (String couple : couples) {
-                    couple = couple.trim();
-                    if (!couple.isEmpty()) {
-                        // Sépare les deux sommets par ","
-                        String[] sommets = couple.split(",");
-                        if (sommets.length == 2) {
-                            arcs.add(new String[]{sommets[0].trim(), sommets[1].trim()});
-                        }
-                    }
-                }
+                String[] parties = ligne.split(",");
+                int a = Integer.parseInt(parties[0].trim());
+                int b = Integer.parseInt(parties[1].trim());
+                Sommet s1=new Sommet(a,  0);
+                Sommet s2=new Sommet(b, 0);
+                Arc arc=new Arc(s1, s2);
+                Arcs.add(arc);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        // Affichage du contenu
-        for (String[] arc : arcs) {
-            System.out.println("Arc : " + arc[0] + " -> " + arc[1]);
+        for (Arc arc : Arcs) {
+            System.out.println(arc.s_depart.numero + " " + arc.s_arrivee.numero);
         }
     }
 }
