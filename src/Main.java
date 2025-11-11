@@ -4,7 +4,7 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         List<String[]> arcs = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader("arcs_test.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("src\\arcs_test.txt"))) {
             String ligne;
             while ((ligne = br.readLine()) != null) {
                 // Enlève les espaces et sépare les arcs par ";"
