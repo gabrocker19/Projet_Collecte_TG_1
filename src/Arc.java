@@ -6,7 +6,6 @@ import java.util.ArrayList;
 public class Arc {
     public Sommet s_depart, s_arrivee;
     public int distance;
-    public String nom;
 
     public Arc (Sommet s1, Sommet s2){
         this.s_depart=s1;

@@ -6,7 +6,7 @@ public class Itineraire {
     public Sommet depart;
 
     public Itineraire (Sommet depart, Sommet collecte){
-        this.depart=new Sommet(0);
+        this.depart=depart;
         this.PtsCollecte.add(collecte);
 
         //ALGO///////////
@@ -17,8 +17,9 @@ public class Itineraire {
     }
 
     public void afficher_itineraire() {
+        System.out.println("Itineraire :");
         for (Arc arc : Arcs) {
-            System.out.println(arc.s_depart.numero + " " + arc.s_arrivee.numero);
+            arc.afficher_arc();
         }
     }
 }
