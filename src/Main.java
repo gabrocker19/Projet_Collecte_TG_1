@@ -1,15 +1,31 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.io.*;
+import java.util.*;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
-
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+        List<String[]> arcs = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader("arcs_test.txt"))) {
+            String ligne;
+            while ((ligne = br.readLine()) != null) {
+                // Enlève les espaces et sépare les arcs par ";"
+                String[] couples = ligne.trim().split(";");
+                for (String couple : couples) {
+                    couple = couple.trim();
+                    if (!couple.isEmpty()) {
+                        // Sépare les deux sommets par ","
+                        String[] sommets = couple.split(",");
+                        if (sommets.length == 2) {
+                            arcs.add(new String[]{sommets[0].trim(), sommets[1].trim()});
+                        }
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        // Affichage du contenu
+        for (String[] arc : arcs) {
+            System.out.println("Arc : " + arc[0] + " -> " + arc[1]);
         }
     }
 }
