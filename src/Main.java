@@ -6,17 +6,17 @@ public class Main {
         ArrayList<Arc> Arcs = new ArrayList<>();
         Sommet s_depart = new Sommet(0);
 
-        Arc a = new Arc(null, null, 0);
-        int nb_arcs=a.remplir_tableau(Arcs);
-        for (Arc arc : Arcs) {
-            arc.afficher_arc();
-        }
-
-        Itineraire chemin = new Itineraire(s_depart, new Sommet(3));
-        chemin.afficher_itineraire();
+        Arc.remplir_tableau(Arcs);
+        int nb_arcs=Arc.compter_arcs(Arcs);
+        Arc.afficher_arcs(Arcs);
 
         Matrice matrice = new Matrice(nb_arcs);
         matrice.remplir_matrice(Arcs);
-        matrice.afficher_matrice();
+
+        Graphe graphe = new Graphe(matrice.m);
+        graphe.compter_sommets(Arcs);
+        //graphe.afficher_matrice();
+        System.out.println("Sommets : " + graphe.nb_sommets);
+        graphe.afficher_distances(Graphe.Dijkstra(graphe, s_depart.numero));
     }
 }

@@ -13,8 +13,7 @@ public class Arc {
         this.distance=distance;
     }
 
-    public int remplir_tableau (ArrayList<Arc> Arcs) {
-        int nb_arcs=0;
+    public static void remplir_tableau (ArrayList<Arc> Arcs) {
         try (BufferedReader br = new BufferedReader(new FileReader("src\\arcs_test.txt"))) {
             String ligne;
             while ((ligne = br.readLine()) != null) {
@@ -26,16 +25,24 @@ public class Arc {
                 Sommet s2=new Sommet(b);
                 Arc arc=new Arc(s1, s2, c);
                 Arcs.add(arc);
-                nb_arcs++;
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return nb_arcs;
+    }
+
+    public static int compter_arcs (ArrayList<Arc> Arcs) {
+        return Arcs.size();
     }
 
     public void afficher_arc () {
         System.out.println("Arc : " + this.s_depart.numero + " " + this.s_arrivee.numero + " Distance : " + this.distance);
+    }
+
+    public static void afficher_arcs (ArrayList<Arc> Arcs) {
+        for (Arc arc : Arcs) {
+            arc.afficher_arc();
+        }
     }
 
     public void inverser_arc(Arc arc){

@@ -20,15 +20,7 @@ public class Matrice {
     public void remplir_matrice (ArrayList<Arc> Arcs) {
         for (int i=0; i<nb_arcs; i++){
             this.m[Arcs.get(i).s_depart.numero][Arcs.get(i).s_arrivee.numero]=1;
-        }
-    }
-
-    public void afficher_matrice () {
-        for (int i=0; i<nb_arcs; i++){
-            for (int j=0; j<nb_arcs; j++){
-                System.out.print(m[i][j] + " ");
-            }
-            System.out.println(" ");
+            this.m[Arcs.get(i).s_arrivee.numero][Arcs.get(i).s_depart.numero]=1;
         }
     }
 }
