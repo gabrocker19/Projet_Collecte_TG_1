@@ -12,7 +12,7 @@ public class Arc {
         this.s_arrivee=s2;
     }
 
-    public void remplir_tableau (ArrayList<Arc> Arcs) {
+    public void remplir_tableau (ArrayList<Arc> Arcs, int nb_arcs) {
         try (BufferedReader br = new BufferedReader(new FileReader("src\\arcs_test.txt"))) {
             String ligne;
             while ((ligne = br.readLine()) != null) {
@@ -23,6 +23,7 @@ public class Arc {
                 Sommet s2=new Sommet(b);
                 Arc arc=new Arc(s1, s2);
                 Arcs.add(arc);
+                nb_arcs++;
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -32,4 +33,9 @@ public class Arc {
     public void afficher_arc () {
         System.out.println("Arc : " + this.s_depart.numero + " " + this.s_arrivee.numero);
     }
+
+    public void inverser_arc(Arc arc){
+
+    }
+
 }
