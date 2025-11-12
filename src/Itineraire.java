@@ -8,12 +8,6 @@ public class Itineraire {
     public Itineraire (Sommet depart, Sommet collecte){
         this.depart=depart;
         this.PtsCollecte.add(collecte);
-
-        //ALGO///////////
-        this.Arcs.add(new Arc(new Sommet(0),new Sommet(1)));
-        this.Arcs.add(new Arc(new Sommet(1),new Sommet(3)));
-        this.Arcs.add(new Arc(new Sommet(1),new Sommet(3)));
-        this.Arcs.add(new Arc(new Sommet(0),new Sommet(1)));
     }
 
     public void afficher_itineraire() {

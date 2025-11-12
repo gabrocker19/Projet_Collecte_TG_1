@@ -8,6 +8,7 @@ public class Matrice {
     public int nb_arcs;
 
     public Matrice (int nb_arcs){
+        this.m = new int[nb_arcs][nb_arcs];
         for (int i=0; i<nb_arcs; i++){
             for (int j=0; j<nb_arcs; j++){
                 this.m[i][j]=0;

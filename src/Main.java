@@ -5,10 +5,9 @@ public class Main {
     public static void main(String[] args) {
         ArrayList<Arc> Arcs = new ArrayList<>();
         Sommet s_depart = new Sommet(0);
-        int nb_arcs = 0;
 
-        Arc a = new Arc(null, null);
-        a.remplir_tableau(Arcs, nb_arcs);
+        Arc a = new Arc(null, null, 0);
+        int nb_arcs=a.remplir_tableau(Arcs);
         for (Arc arc : Arcs) {
             arc.afficher_arc();
         }

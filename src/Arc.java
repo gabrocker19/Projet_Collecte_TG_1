@@ -7,35 +7,41 @@ public class Arc {
     public Sommet s_depart, s_arrivee;
     public int distance;
 
-    public Arc (Sommet s1, Sommet s2){
+    public Arc (Sommet s1, Sommet s2, int distance) {
         this.s_depart=s1;
         this.s_arrivee=s2;
+        this.distance=distance;
     }
 
-    public void remplir_tableau (ArrayList<Arc> Arcs, int nb_arcs) {
+    public int remplir_tableau (ArrayList<Arc> Arcs) {
+        int nb_arcs=0;
         try (BufferedReader br = new BufferedReader(new FileReader("src\\arcs_test.txt"))) {
             String ligne;
             while ((ligne = br.readLine()) != null) {
                 String[] parties = ligne.split(",");
                 int a = Integer.parseInt(parties[0].trim());
                 int b = Integer.parseInt(parties[1].trim());
+                int c = Integer.parseInt(parties[2].trim());
                 Sommet s1=new Sommet(a);
                 Sommet s2=new Sommet(b);
-                Arc arc=new Arc(s1, s2);
+                Arc arc=new Arc(s1, s2, c);
                 Arcs.add(arc);
                 nb_arcs++;
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return nb_arcs;
     }
 
     public void afficher_arc () {
-        System.out.println("Arc : " + this.s_depart.numero + " " + this.s_arrivee.numero);
+        System.out.println("Arc : " + this.s_depart.numero + " " + this.s_arrivee.numero + " Distance : " + this.distance);
     }
 
     public void inverser_arc(Arc arc){
-
+        Sommet temp=arc.s_depart;
+        arc.s_depart=arc.s_arrivee;
+        arc.s_arrivee=temp;
     }
 
 }
