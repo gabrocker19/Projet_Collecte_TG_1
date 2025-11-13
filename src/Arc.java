@@ -31,10 +31,6 @@ public class Arc {
         }
     }
 
-    public static int compter_arcs (ArrayList<Arc> Arcs) {
-        return Arcs.size();
-    }
-
     public void afficher_arc () {
         System.out.println("Arc : " + this.s_depart.numero + " " + this.s_arrivee.numero + " Distance : " + this.distance);
     }

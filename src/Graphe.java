@@ -1,45 +1,30 @@
 import java.util.ArrayList;
 
 public class Graphe {
-    public int[][] matrice_adj;
+    public Matrice matrice_adj, matrice_distances;
     int nb_sommets;
 
-    public Graphe(int[][] matrice_adj){
+    public Graphe(Matrice matrice_adj, Matrice matrice_distances) {
         this.matrice_adj=matrice_adj;
+        this.nb_sommets=matrice_adj.nb_sommets;
     }
 
-    public void compter_sommets (ArrayList<Arc> Arcs) {
-        int n = 0;
-        for (int i = 0; i < Arcs.size(); i++) {
-            if (Arcs.get(i).s_depart.numero > n)
-                n = Arcs.get(i).s_depart.numero;
-            if (Arcs.get(i).s_arrivee.numero > n)
-                n = Arcs.get(i).s_arrivee.numero;
-        }
-        this.nb_sommets = n+1;
-    }
-
-    public void afficher_matrice () {
+    public void afficher_matrice_adj () {
         for (int i=0; i<nb_sommets; i++){
             for (int j=0; j<nb_sommets; j++){
-                System.out.print(matrice_adj[i][j] + " ");
+                System.out.print(matrice_adj.m[i][j] + " ");
             }
             System.out.println(" ");
         }
     }
 
-    public void ajouter_arc (int num_s_depart, int num_s_arrivee, int distance){
-        matrice_adj[num_s_depart][num_s_arrivee]=distance;
-        matrice_adj[num_s_arrivee][num_s_depart]=distance;
-    }
-
-    public static int plus_petit_arc (int[] distance, boolean[] visite) {
+    public static int plus_petit_arc (int[] taille, boolean[] visite) {
         int min = Integer.MAX_VALUE;
         int index_min = -1;
-        for (int i = 0; i < distance.length; i++) {
-            if (distance[i] < min) {
+        for (int i = 0; i < taille.length; i++) {
+            if (taille[i] < min) {
                 if (!visite[i]) {
-                    min = distance[i];
+                    min = taille[i];
                     index_min = i;
                 }
             }
@@ -64,8 +49,8 @@ public class Graphe {
             visite[num_s_proche] = true;
             for (int j = 0; j < g.nb_sommets; j++) {
                 if (!visite[j])
-                    if (g.matrice_adj[num_s_proche][j] != 0){
-                        d = distance[num_s_proche] +  g.matrice_adj[num_s_proche][j];
+                    if (g.matrice_adj.m[num_s_proche][j] != 0){
+                        d = distance[num_s_proche] +  g.matrice_adj.m[num_s_proche][j];
                         if (d < distance[j])
                             distance[j] = d;
                     }
