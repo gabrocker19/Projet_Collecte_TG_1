@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Graphe {
-    public Matrice matrice_adj;
+    Matrice matrice_adj;
     int nb_sommets;
 
     public Graphe(Matrice matrice_adj) {

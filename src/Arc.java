@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Arc {
-    public Sommet s_depart, s_arrivee;
-    public int distance;
+    Sommet s_depart, s_arrivee;
+    int distance;
 
     public Arc (Sommet s1, Sommet s2, int distance) {
         this.s_depart=s1;

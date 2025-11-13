@@ -16,6 +16,9 @@ public class Main {
 
         Graphe graphe = new Graphe(m_adj);
         int[] longeurs=graphe.Dijkstra(graphe, s_depart.numero);
-        graphe.afficher_distances(longeurs);
+        //graphe.afficher_distances(longeurs);
+
+        Itineraire itineraire = Itineraire.creer(graphe.nb_sommets);
+        itineraire.afficher_itineraire();
     }
 }

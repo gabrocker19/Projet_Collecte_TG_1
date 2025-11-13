@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.Random;
 
 public class Sommet {
-    public int numero;
+    int numero;
 
     public Sommet(int numero){
         this.numero=numero;

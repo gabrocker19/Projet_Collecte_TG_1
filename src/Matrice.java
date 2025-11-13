@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Matrice {
-    public int[][] m, longeurs;
-    public int nb_arcs, nb_sommets;
+    int[][] m, longeurs;
+    int nb_arcs, nb_sommets;
 
     public Matrice (ArrayList<Arc> Arcs){
         // init nb arcs
