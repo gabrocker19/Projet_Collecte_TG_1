@@ -53,6 +53,7 @@ public class Graphe {
     }
 
     public void afficher_distances(int[] distance) {
+        System.out.println("Distances par rapport au point de départ :");
         for (int i = 0; i < distance.length; i++) {
             System.out.println("S" + i + " : " + distance[i]);
         }

@@ -4,7 +4,6 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         ArrayList<Arc> Arcs = new ArrayList<>();
-        Sommet s_depart = new Sommet(0);
 
         Arc.remplir_tableau(Arcs);
         //Arc.afficher_arcs(Arcs);
@@ -15,10 +14,10 @@ public class Main {
         m.afficher_nb_sommets();
 
         Graphe graphe = new Graphe(m);
-        ResultatDijkstra r=graphe.Dijkstra(graphe, s_depart.numero);
-        graphe.afficher_distances(r.distance);
-
         Itineraire itineraire = Itineraire.creer(graphe);
+        ResultatDijkstra r = graphe.Dijkstra(graphe, itineraire.s_depart.numero);
+        graphe.afficher_distances(r.distance);
         itineraire.afficher_chemin(r.precedent);
+
     }
 }
