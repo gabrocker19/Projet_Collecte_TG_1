@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Matrice {
-    public int[][] m;
+    public int[][] m, longeurs;
     public int nb_arcs, nb_sommets;
 
     public Matrice (ArrayList<Arc> Arcs){
@@ -23,31 +23,34 @@ public class Matrice {
 
         //init matrice
         this.m = new int[this.nb_sommets][this.nb_sommets];
+        this.longeurs = new int[this.nb_sommets][this.nb_sommets];
         for (int i=0; i<this.nb_sommets; i++){
             for (int j=0; j<this.nb_sommets; j++){
                 this.m[i][j]=0;
+                this.longeurs[i][j]=Integer.MAX_VALUE;
             }
         }
     }
-//override
-    public void remplir_m_adj (ArrayList<Arc> Arcs) {
-        for (int i=0; i<this.nb_sommets; i++){
+
+    public void remplir_adj_long (ArrayList<Arc> Arcs) {
+        for (int i=0; i<this.nb_arcs; i++){
             this.m[Arcs.get(i).s_depart.numero][Arcs.get(i).s_arrivee.numero]=1;
             this.m[Arcs.get(i).s_arrivee.numero][Arcs.get(i).s_depart.numero]=1;
+            this.longeurs[Arcs.get(i).s_depart.numero][Arcs.get(i).s_arrivee.numero]=Arcs.get(i).distance;
+            this.longeurs[Arcs.get(i).s_arrivee.numero][Arcs.get(i).s_depart.numero]=Arcs.get(i).distance;
         }
     }
 
-    public int[] remplir_tab_dist (ArrayList<Arc> Arcs) {
-        int[] remplir_tab = new int[this.nb_sommets];
-
-
-        return remplir_tab;
+    public void afficher_matrice_adj () {
+        for (int i=0; i<nb_sommets; i++){
+            for (int j=0; j<nb_sommets; j++){
+                System.out.print(this.m[i][j] + " ");
+            }
+            System.out.println(" ");
+        }
     }
 
-    public void remplir_m_dist (ArrayList<Arc> Arcs) {
-        for (int i=0; i<this.nb_sommets; i++){
-            this.m[Arcs.get(i).s_depart.numero][Arcs.get(i).s_arrivee.numero]=Arcs.get(i).distance;
-            this.m[Arcs.get(i).s_arrivee.numero][Arcs.get(i).s_depart.numero]=Arcs.get(i).distance;
-        }
+    public void afficher_nb_sommets () {
+        System.out.println("Sommets : " + this.nb_sommets);
     }
 }
