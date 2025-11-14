@@ -15,11 +15,10 @@ public class Main {
         //m.afficher_nb_sommets();
 
         Graphe graphe = new Graphe(m);
-        Itineraire itineraire = Itineraire.creer(graphe);
+        T1_P1_H1 itineraire = T1_P1_H1.creer(graphe);
         ResultatDijkstra r = graphe.Dijkstra(graphe, itineraire.s_depart.numero);
         //graphe.afficher_distances(r.distance);
         itineraire.remplir_itineraire(r.precedent, graphe);
         itineraire.afficher_chemin();
-
     }
 }
