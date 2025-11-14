@@ -11,10 +11,12 @@ public class Matrice {
         // init nb sommets
         int n = 0;
         for (Arc arc : Arcs) {
-            if (arc.s_depart.numero > n)
+            if (arc.s_depart.numero > n) {
                 n = arc.s_depart.numero;
-            if (arc.s_arrivee.numero > n)
+            }
+            if (arc.s_arrivee.numero > n) {
                 n = arc.s_arrivee.numero;
+            }
         }
         this.nb_sommets = n+1;
 
@@ -50,7 +52,12 @@ public class Matrice {
     public void afficher_matrice_dist () {
         for (int i=0; i<nb_sommets; i++){
             for (int j=0; j<nb_sommets; j++){
-                System.out.print(this.longeurs[i][j] + " ");
+                if (this.longeurs[i][j]!=Integer.MAX_VALUE){
+                    System.out.print(this.longeurs[i][j] + " ");
+                }
+                else{
+                    System.out.print("o ");
+                }
             }
             System.out.println(" ");
         }

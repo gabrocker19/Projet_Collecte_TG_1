@@ -1,10 +1,14 @@
+import java.util.ArrayList;
+
 public class Graphe {
     Matrice matrice;
     int nb_sommets;
+    ArrayList<Sommet> a_visiter;
 
     public Graphe(Matrice matrice) {
         this.matrice=matrice;
         this.nb_sommets=matrice.nb_sommets;
+        this.a_visiter = new ArrayList<>();
     }
 
     public static int plus_petit_arc (int[] taille, boolean[] visite) {
@@ -39,14 +43,15 @@ public class Graphe {
                 return new ResultatDijkstra(distance, precedent);
             visite[num_s_proche] = true;
             for (int j = 0; j < g.nb_sommets; j++) {
-                if (!visite[j])
-                    if (g.matrice.adj[num_s_proche][j] != 0){
-                        d = distance[num_s_proche] +  g.matrice.longeurs[num_s_proche][j];
+                if (!visite[j]) {
+                    if (g.matrice.adj[num_s_proche][j] != 0) {
+                        d = distance[num_s_proche] + g.matrice.longeurs[num_s_proche][j];
                         if (d < distance[j]) {
                             distance[j] = d;
                             precedent[j] = num_s_proche;
                         }
                     }
+                }
             }
         }
         return new ResultatDijkstra(distance, precedent);
