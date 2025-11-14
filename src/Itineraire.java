@@ -38,4 +38,17 @@ public abstract class Itineraire {
         }
         System.out.println();
     }
+
+    public String genererChemin() {
+        StringBuilder sb = new StringBuilder();
+        int j = this.distances.size() - 1;
+        for (Sommet sommet : this.chemin) {
+            sb.append(sommet.numero);
+            if (j >= 0) {
+                sb.append(" -> (").append(this.distances.get(j)).append(") -> ");
+                j--;
+            }
+        }
+        return sb.toString();
+    }
 }

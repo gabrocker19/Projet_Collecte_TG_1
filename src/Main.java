@@ -20,5 +20,8 @@ public class Main {
         //graphe.afficher_distances(r.distance);
         itineraire.remplir_itineraire(r.precedent, graphe);
         itineraire.afficher_chemin();
+        Affichage aff = new Affichage(Arcs, m, graphe);
+        aff.lancerGUI();
+
     }
 }

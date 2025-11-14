@@ -177,7 +177,7 @@ public class Affichage {
         int a = da[1];
 
         // Création de l’itinéraire comme tu le faisais dans creer(...)
-        Itineraire itin = new Itineraire(new Sommet(d), new Sommet(a), graphe);
+        T1_P1_H1 itin = new T1_P1_H1(new Sommet(d), new Sommet(a), graphe);
 
         // Lancement de Dijkstra à partir de d
         ResultatDijkstra res = graphe.Dijkstra(graphe, d);
