@@ -5,6 +5,7 @@ public class Itineraire {
     Sommet s_depart, s_arrivee;
     Graphe graphe;
     ArrayList<Integer> chemin = new ArrayList<>();
+    ArrayList<Integer> distances = new ArrayList<>();
 
     public Itineraire(Sommet depart, Sommet arrivee, Graphe graphe) {
         this.s_depart = depart;
@@ -29,16 +30,28 @@ public class Itineraire {
         return new Itineraire(new Sommet(d), new Sommet(a), graphe);
     }
 
-    public void afficher_chemin(int[] precedent) {
+    public void remplir_itineraire(int[] precedent, Graphe graphe) {
         for (int i = s_arrivee.numero; i != -1; i = precedent[i]) {
             this.chemin.addFirst(i);
         }
-        for (int i = 0; i < this.chemin.size(); i++) {
-            System.out.print(this.chemin.get(i));
-            if (i < this.chemin.size() - 1)
-                System.out.print(" -> ");
+        for (int i=0; i<this.chemin.size(); i++) {
+            try {
+                this.distances.addFirst(graphe.matrice.longeurs[this.chemin.get(i)][this.chemin.get(i+1)]);
+            } catch (IndexOutOfBoundsException e) {}
+        }
+    }
+
+    public void afficher_chemin() {
+        int j = this.distances.size() - 1;
+        for (Integer integer : this.chemin) {
+            System.out.print(integer);
+            if (j >= 0) {
+                System.out.print(" -> (" + this.distances.get(j) + ") -> ");
+                j--;
+            }
         }
         System.out.println();
     }
+
 }
 

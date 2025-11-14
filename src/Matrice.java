@@ -47,6 +47,15 @@ public class Matrice {
         }
     }
 
+    public void afficher_matrice_dist () {
+        for (int i=0; i<nb_sommets; i++){
+            for (int j=0; j<nb_sommets; j++){
+                System.out.print(this.longeurs[i][j] + " ");
+            }
+            System.out.println(" ");
+        }
+    }
+
     public void afficher_nb_sommets () {
         System.out.println("Sommets : " + this.nb_sommets);
     }
