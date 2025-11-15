@@ -183,7 +183,7 @@ public class Affichage {
         ResultatDijkstra res = graphe.Dijkstra(graphe, d);
 
         // Remplir l’itinéraire avec le tableau des précédents
-        itin.remplir_itineraire(res.precedent, graphe);
+        itin.remplir_itineraire(res, graphe);
 
         // Affichage dans une fenêtre : utilise ta méthode genererChemin()
         afficherMessage("Itinéraire de " + d + " à " + a, itin.genererChemin());

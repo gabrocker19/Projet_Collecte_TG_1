@@ -15,13 +15,18 @@ public class Main {
         //m.afficher_nb_sommets();
 
         Graphe graphe = new Graphe(m);
-        T1_P1_H1 itineraire = T1_P1_H1.creer(graphe);
-        ResultatDijkstra r = graphe.Dijkstra(graphe, itineraire.s_depart.numero);
-        //graphe.afficher_distances(r.distance);
-        itineraire.remplir_itineraire(r.precedent, graphe);
-        itineraire.afficher_chemin();
-        Affichage aff = new Affichage(Arcs, m, graphe);
-        aff.lancerGUI();
 
+        T1_P1_H1 i1 = T1_P1_H1.creer(graphe);
+        ResultatDijkstra r = graphe.Dijkstra(graphe, i1.s_depart.numero);
+        //graphe.afficher_distances(r.distance);
+        i1.remplir_itineraire(r, graphe);
+        i1.afficher_chemin();
+
+        T1_P1_H2 i2 = T1_P1_H2.creer(graphe);
+        i2.afficher_s_a_visiter();
+
+
+        //Affichage aff = new Affichage(Arcs, m, graphe);
+        //aff.lancerGUI();
     }
 }

@@ -16,8 +16,8 @@ public abstract class Itineraire {
         return null;
     }
 
-    public void remplir_itineraire(int[] precedent, Graphe graphe) {
-        for (int i = s_arrivee.numero; i != -1; i = precedent[i]) {
+    public void remplir_itineraire(ResultatDijkstra r, Graphe graphe) {
+        for (int i = s_arrivee.numero; i != -1; i = r.precedent[i]) {
             this.chemin.addFirst(new Sommet(i));
         }
         for (int i=0; i<this.chemin.size(); i++) {
