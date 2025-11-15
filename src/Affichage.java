@@ -79,8 +79,7 @@ public class Affichage {
         panel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
         panel.setBackground(new Color(240, 245, 255));
 
-        JLabel titre = new JLabel("Thème 1 : Ramassage aux pieds des habitations",
-                SwingConstants.CENTER);
+        JLabel titre = new JLabel("Thème 1 : Ramassage aux pieds des habitations", SwingConstants.CENTER);
         titre.setFont(new Font("SansSerif", Font.BOLD, 18));
         titre.setForeground(new Color(40, 70, 120));
         panel.add(titre, BorderLayout.NORTH);
@@ -88,20 +87,16 @@ public class Affichage {
         JPanel centre = new JPanel(new GridLayout(0, 1, 10, 10));
         centre.setOpaque(false);
 
-        JButton btnAffichages = createStyledButton("Affichages du graphe");
-        JButton btnChemin     = createStyledButton("Itinéraire (choisir départ / arrivée)");
+        JButton btnAffichage1 = createStyledButton("Affichages du graphe");
+        JButton btnAffichage2 = createStyledButton("Choix problématiques");
         JButton btnRetour     = createStyledButton("Retour au menu principal");
 
-        // ➜ ouvre le sous-menu avec arcs / matrices / dijkstra
-        btnAffichages.addActionListener(e -> ouvrirSousMenuAffichagesTheme1(f));
-
-        // ➜ garde ta logique actuelle pour l’itinéraire
-        btnChemin.addActionListener(e -> afficherItineraireDepuisFenetre(f));
-
+        btnAffichage1.addActionListener(e -> ouvrirSousMenu1AffichagesTheme1(f));
+        btnAffichage2.addActionListener(e -> ouvrirSousMenu2AffichagesTheme1(f));
         btnRetour.addActionListener(e -> f.dispose());
 
-        centre.add(btnAffichages);
-        centre.add(btnChemin);
+        centre.add(btnAffichage1);
+        centre.add(btnAffichage2);
         centre.add(btnRetour);
 
         panel.add(centre, BorderLayout.CENTER);
@@ -109,7 +104,8 @@ public class Affichage {
         f.setContentPane(panel);
         f.setVisible(true);
     }
-    private void ouvrirSousMenuAffichagesTheme1(JFrame parent) {
+
+    private void ouvrirSousMenu1AffichagesTheme1(JFrame parent) {
         JFrame f = new JFrame("Thème 1 - Affichages du graphe");
         f.setSize(520, 380);
         f.setLocationRelativeTo(parent);
@@ -133,26 +129,11 @@ public class Affichage {
         JButton btnDistDij = createStyledButton("Afficher les distances (Dijkstra)");
         JButton btnRetour  = createStyledButton("Retour");
 
-        btnArcs.addActionListener(e ->
-                afficherMessage("Arcs du graphe", texteArcs())
-        );
-
-        btnAdj.addActionListener(e ->
-                afficherMessage("Matrice d'adjacence", texteMatriceAdj())
-        );
-
-        btnDistMat.addActionListener(e ->
-                afficherMessage("Matrice des distances", texteMatriceDist())
-        );
-
-        btnNbSom.addActionListener(e ->
-                afficherMessage("Nombre de sommets", "Nombre de sommets : " + matrice.nb_sommets)
-        );
-
-        btnDistDij.addActionListener(e ->
-                afficherDistancesDepuisSommetChoisi(f)
-        );
-
+        btnArcs.addActionListener(e -> afficherMessage("Arcs du graphe", texteArcs()));
+        btnAdj.addActionListener(e -> afficherMessage("Matrice d'adjacence", texteMatriceAdj()));
+        btnDistMat.addActionListener(e -> afficherMessage("Matrice des distances", texteMatriceDist()));
+        btnNbSom.addActionListener(e -> afficherMessage("Nombre de sommets", "Nombre de sommets : " + matrice.nb_sommets));
+        btnDistDij.addActionListener(e -> afficherDistancesDepuisSommetChoisi(f));
         btnRetour.addActionListener(e -> f.dispose());
 
         centre.add(btnArcs);
@@ -166,6 +147,113 @@ public class Affichage {
 
         f.setContentPane(panel);
         f.setVisible(true);
+    }
+
+    private void ouvrirSousMenu2AffichagesTheme1(JFrame parent) {
+        JFrame f = new JFrame("Thème 1 - Choix Problématiques");
+        f.setSize(520, 380);
+        f.setLocationRelativeTo(parent);
+
+        JPanel panel = new JPanel(new BorderLayout(10, 10));
+        panel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
+        panel.setBackground(new Color(240, 245, 255));
+
+        JLabel titre = new JLabel("Poblématiques", SwingConstants.CENTER);
+        titre.setFont(new Font("SansSerif", Font.BOLD, 18));
+        titre.setForeground(new Color(40, 70, 120));
+        panel.add(titre, BorderLayout.NORTH);
+
+        JPanel centre = new JPanel(new GridLayout(0, 1, 12, 12));
+        centre.setOpaque(false);
+
+        JButton btnProb1  = createStyledButton("Problématique 1");
+        JButton btnProb2  = createStyledButton("Problématique 2");
+        JButton btnRetour = createStyledButton("Retour");
+
+        btnProb1.addActionListener(e -> OuvrirMenuProblematique1Theme1(f));
+        btnProb2.addActionListener(e -> OuvrirMenuPorblematique2Theme1(f));
+        btnRetour.addActionListener(e -> f.dispose());
+
+        centre.add(btnProb1);
+        centre.add(btnProb2);
+        centre.add(btnRetour);
+
+        panel.add(centre, BorderLayout.CENTER);
+
+        f.setContentPane(panel);
+        f.setVisible(true);
+
+    }
+    private void OuvrirMenuProblematique1Theme1(JFrame parent) {
+        JFrame f = new JFrame("Thème 1 - Choix Hypothèse");
+        f.setSize(520, 380);
+        f.setLocationRelativeTo(parent);
+
+        JPanel panel = new JPanel(new BorderLayout(10, 10));
+        panel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
+        panel.setBackground(new Color(240, 245, 255));
+
+        JLabel titre = new JLabel("Hypothèse (Thème 1)", SwingConstants.CENTER);
+        titre.setFont(new Font("SansSerif", Font.BOLD, 18));
+        titre.setForeground(new Color(40, 70, 120));
+        panel.add(titre, BorderLayout.NORTH);
+
+        JPanel centre = new JPanel(new GridLayout(0, 1, 12, 12));
+        centre.setOpaque(false);
+
+        JButton btnProb1  = createStyledButton("Hypothèse 1");
+        JButton btnProb2  = createStyledButton("Hypothèse 2");
+        JButton btnRetour = createStyledButton("Retour");
+
+        btnProb1.addActionListener(e -> afficherItineraireDepuisFenetre(f));
+        btnProb2.addActionListener(e -> afficherMessage("chemin plusieurs sommets", texteMatriceAdj()));
+        btnRetour.addActionListener(e -> f.dispose());
+
+        centre.add(btnProb1);
+        centre.add(btnProb2);
+        centre.add(btnRetour);
+
+        panel.add(centre, BorderLayout.CENTER);
+
+        f.setContentPane(panel);
+        f.setVisible(true);
+
+    }
+
+    private void OuvrirMenuPorblematique2Theme1(JFrame parent) {
+        JFrame f = new JFrame("Thème 1 - Choix Problématiques");
+        f.setSize(520, 380);
+        f.setLocationRelativeTo(parent);
+
+        JPanel panel = new JPanel(new BorderLayout(10, 10));
+        panel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
+        panel.setBackground(new Color(240, 245, 255));
+
+        JLabel titre = new JLabel("Affichages (Thème 1)", SwingConstants.CENTER);
+        titre.setFont(new Font("SansSerif", Font.BOLD, 18));
+        titre.setForeground(new Color(40, 70, 120));
+        panel.add(titre, BorderLayout.NORTH);
+
+        JPanel centre = new JPanel(new GridLayout(0, 1, 12, 12));
+        centre.setOpaque(false);
+
+        JButton btnProb1  = createStyledButton("Problématique 1");
+        JButton btnProb2  = createStyledButton("Problématique 2");
+        JButton btnRetour = createStyledButton("Retour");
+
+        btnProb1.addActionListener(e -> afficherMessage("Arcs du graphe", texteArcs()));
+        btnProb2.addActionListener(e -> afficherMessage("Matrice d'adjacence", texteMatriceAdj()));
+        btnRetour.addActionListener(e -> f.dispose());
+
+        centre.add(btnProb1);
+        centre.add(btnProb2);
+        centre.add(btnRetour);
+
+        panel.add(centre, BorderLayout.CENTER);
+
+        f.setContentPane(panel);
+        f.setVisible(true);
+
     }
 
     // ====== Choix départ/arrivée + calcul de l’itinéraire ======
@@ -192,10 +280,8 @@ public class Affichage {
     // ====== petite fenêtre pour demander départ / arrivée ======
     private int[] demanderDepartArrivee(JFrame parent) {
         // Spinners de 0 à nb_sommets-1
-        JSpinner spDepart = new JSpinner(
-                new SpinnerNumberModel(0, 0, matrice.nb_sommets - 1, 1));
-        JSpinner spArrivee = new JSpinner(
-                new SpinnerNumberModel(1, 0, matrice.nb_sommets - 1, 1));
+        JSpinner spDepart = new JSpinner(new SpinnerNumberModel(0, 0, matrice.nb_sommets - 1, 1));
+        JSpinner spArrivee = new JSpinner(new SpinnerNumberModel(1, 0, matrice.nb_sommets - 1, 1));
 
         JPanel panel = new JPanel(new GridLayout(2, 2, 10, 10));
         panel.add(new JLabel("Sommet de départ :"));
