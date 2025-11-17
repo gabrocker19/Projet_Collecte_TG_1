@@ -13,7 +13,6 @@ public class Affichage {
         this.matrice = matrice;
         this.graphe = graphe;
     }
-
     // ====== LANCEMENT DE L'IHM ======
     public void lancerGUI() {
         // Look & feel Nimbus
@@ -33,7 +32,7 @@ public class Affichage {
     private void creerMenuPrincipal() {
         JFrame frame = new JFrame("Projet Graphes - Menu principal");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(480, 330);
+        frame.setSize(960, 660);
         frame.setLocationRelativeTo(null);
 
         JPanel panel = new JPanel(new BorderLayout(10, 10));
@@ -201,16 +200,16 @@ public class Affichage {
         JPanel centre = new JPanel(new GridLayout(0, 1, 12, 12));
         centre.setOpaque(false);
 
-        JButton btnProb1  = createStyledButton("Hypothèse 1");
-        JButton btnProb2  = createStyledButton("Hypothèse 2");
+        JButton btnHypo1  = createStyledButton("Hypothèse 1");
+        JButton btnHypo2  = createStyledButton("Hypothèse 2");
         JButton btnRetour = createStyledButton("Retour");
 
-        btnProb1.addActionListener(e -> afficherItineraireDepuisFenetre(f));
-        btnProb2.addActionListener(e -> afficherMessage("chemin plusieurs sommets", texteMatriceAdj()));
+        btnHypo1.addActionListener(e -> afficherItineraireDepuisFenetre(f));
+        btnHypo2.addActionListener(e -> afficherMessage("chemin plusieurs sommets", texteMatriceAdj()));
         btnRetour.addActionListener(e -> f.dispose());
 
-        centre.add(btnProb1);
-        centre.add(btnProb2);
+        centre.add(btnHypo1);
+        centre.add(btnHypo2);
         centre.add(btnRetour);
 
         panel.add(centre, BorderLayout.CENTER);
@@ -221,7 +220,7 @@ public class Affichage {
     }
 
     private void OuvrirMenuPorblematique2Theme1(JFrame parent) {
-        JFrame f = new JFrame("Thème 1 - Choix Problématiques");
+        JFrame f = new JFrame("Thème 1 - Choix de cas");
         f.setSize(520, 380);
         f.setLocationRelativeTo(parent);
 
@@ -229,7 +228,7 @@ public class Affichage {
         panel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
         panel.setBackground(new Color(240, 245, 255));
 
-        JLabel titre = new JLabel("Affichages (Thème 1)", SwingConstants.CENTER);
+        JLabel titre = new JLabel("Cas", SwingConstants.CENTER);
         titre.setFont(new Font("SansSerif", Font.BOLD, 18));
         titre.setForeground(new Color(40, 70, 120));
         panel.add(titre, BorderLayout.NORTH);
@@ -237,16 +236,19 @@ public class Affichage {
         JPanel centre = new JPanel(new GridLayout(0, 1, 12, 12));
         centre.setOpaque(false);
 
-        JButton btnProb1  = createStyledButton("Problématique 1");
-        JButton btnProb2  = createStyledButton("Problématique 2");
+        JButton btnCas1  = createStyledButton("Cas idéal");
+        JButton btnCas2  = createStyledButton("Cas moins trivial");
+        JButton btnCas3  = createStyledButton("Cas général");
         JButton btnRetour = createStyledButton("Retour");
 
-        btnProb1.addActionListener(e -> afficherMessage("Arcs du graphe", texteArcs()));
-        btnProb2.addActionListener(e -> afficherMessage("Matrice d'adjacence", texteMatriceAdj()));
+        btnCas1.addActionListener(e -> afficherMessage("", texteArcs()));
+        btnCas2.addActionListener(e -> afficherMessage("", texteMatriceAdj()));
+        btnCas3.addActionListener(e -> afficherMessage("", texteMatriceAdj()));
         btnRetour.addActionListener(e -> f.dispose());
 
-        centre.add(btnProb1);
-        centre.add(btnProb2);
+        centre.add(btnCas1);
+        centre.add(btnCas2);
+        centre.add(btnCas3);
         centre.add(btnRetour);
 
         panel.add(centre, BorderLayout.CENTER);
@@ -347,8 +349,7 @@ public class Affichage {
         panel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
         panel.setBackground(new Color(240, 245, 255));
 
-        JLabel titre = new JLabel("Thème 2 : Points de collecte (à compléter)",
-                SwingConstants.CENTER);
+        JLabel titre = new JLabel("Thème 2 : Points de collecte", SwingConstants.CENTER);
         titre.setFont(new Font("SansSerif", Font.BOLD, 18));
         titre.setForeground(new Color(40, 70, 120));
         panel.add(titre, BorderLayout.NORTH);
@@ -359,11 +360,7 @@ public class Affichage {
         JButton btnInfo = createStyledButton("À implémenter plus tard");
         JButton btnRetour = createStyledButton("Retour au menu principal");
 
-        btnInfo.addActionListener(e ->
-                afficherMessage("Thème 2",
-                        "Tu pourras mettre ici tes heuristiques de tournée (TSP, etc.).")
-        );
-
+        btnInfo.addActionListener(e -> afficherMessage("Thème 2", "Tu pourras mettre ici tes heuristiques de tournée (TSP, etc.)."));
         btnRetour.addActionListener(e -> f.dispose());
 
         centre.add(btnInfo);
@@ -385,8 +382,7 @@ public class Affichage {
         panel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
         panel.setBackground(new Color(240, 245, 255));
 
-        JLabel titre = new JLabel("Thème 3 : Planification (à compléter)",
-                SwingConstants.CENTER);
+        JLabel titre = new JLabel("Thème 3 : Planification (à compléter)", SwingConstants.CENTER);
         titre.setFont(new Font("SansSerif", Font.BOLD, 18));
         titre.setForeground(new Color(40, 70, 120));
         panel.add(titre, BorderLayout.NORTH);
@@ -397,11 +393,7 @@ public class Affichage {
         JButton btnInfo = createStyledButton("À implémenter plus tard");
         JButton btnRetour = createStyledButton("Retour au menu principal");
 
-        btnInfo.addActionListener(e ->
-                afficherMessage("Thème 3",
-                        "Tu pourras mettre ici gestion de secteurs, plannings, etc.")
-        );
-
+        btnInfo.addActionListener(e -> afficherMessage("Thème 3", "Tu pourras mettre ici gestion de secteurs, plannings, etc."));
         btnRetour.addActionListener(e -> f.dispose());
 
         centre.add(btnInfo);
@@ -467,10 +459,7 @@ public class Affichage {
         btn.setFont(new Font("SansSerif", Font.PLAIN, 14));
         btn.setBackground(new Color(210, 225, 255));
         btn.setForeground(new Color(30, 30, 30));
-        btn.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createLineBorder(new Color(150, 170, 210)),
-                BorderFactory.createEmptyBorder(8, 12, 8, 12)
-        ));
+        btn.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(new Color(150, 170, 210)), BorderFactory.createEmptyBorder(8, 12, 8, 12)));
         return btn;
     }
 
