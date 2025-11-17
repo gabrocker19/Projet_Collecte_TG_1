@@ -141,4 +141,53 @@ public class T1_P1_H2 extends Itineraire {
 
         System.out.println("Coût total = " + meilleur_cout);
     }
+
+    // ====== Construction d'une chaîne pour l'affichage (Swing) ======
+    private int indexDansAVisiter(Sommet s) {
+        for (int i = 0; i < nb_a_visiter; i++) {
+            if (a_visiter.get(i).numero == s.numero) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public String texteMeilleurCycle() {
+        if (meilleur_cycle == null || meilleur_cycle.isEmpty()) {
+            return "Aucun cycle calculé pour le moment.";
+        }
+
+        StringBuilder sb = new StringBuilder();
+
+        // Rappel des sommets choisis
+        sb.append("Sommets à visiter : ");
+        for (Sommet s : a_visiter) {
+            sb.append("S").append(s.numero).append(" ");
+        }
+        sb.append("\n\n");
+
+        sb.append("Meilleur cycle trouvé :\n");
+
+        for (int i = 0; i < meilleur_cycle.size(); i++) {
+            Sommet s1 = meilleur_cycle.get(i);
+            Sommet s2 = meilleur_cycle.get((i + 1) % meilleur_cycle.size()); // boucle
+
+            int i1 = indexDansAVisiter(s1);
+            int i2 = indexDansAVisiter(s2);
+
+            sb.append("S").append(s1.numero);
+
+            if (i1 != -1 && i2 != -1) {
+                sb.append(" -> (").append(matTSP[i1][i2]).append(") -> ");
+            } else {
+                sb.append(" -> ");
+            }
+        }
+
+        // retour au premier sommet pour fermer le cycle
+        sb.append("S").append(meilleur_cycle.getFirst().numero);
+        sb.append("\n\nCoût total = ").append(meilleur_cout);
+        return sb.toString();
+    }
+
 }
