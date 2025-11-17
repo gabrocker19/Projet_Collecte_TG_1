@@ -15,8 +15,6 @@ public class Main {
         //m.afficher_nb_sommets();
 
 
-        //appel de la méthode graphstream GABINNNNNNNNNNNNNNNNNN
-        Graphstream.creer_Graphstream(Arcs);
 
         Graphe graphe = new Graphe(m);
 

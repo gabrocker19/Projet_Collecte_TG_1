@@ -186,7 +186,7 @@ public class T1_P1_H2 extends Itineraire {
 
         // retour au premier sommet pour fermer le cycle
         sb.append("S").append(meilleur_cycle.getFirst().numero);
-        sb.append("\n\nCoût total = ").append(meilleur_cout);
+        sb.append("\n\nDistance total = ").append(meilleur_cout);
         return sb.toString();
     }
 

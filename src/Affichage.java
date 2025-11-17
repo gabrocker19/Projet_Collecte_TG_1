@@ -8,6 +8,7 @@ public class Affichage {
     private Matrice matrice;
     private Graphe graphe;
 
+
     public Affichage(ArrayList<Arc> arcs, Matrice matrice, Graphe graphe) {
         this.arcs = arcs;
         this.matrice = matrice;
@@ -121,24 +122,24 @@ public class Affichage {
         JPanel centre = new JPanel(new GridLayout(0, 1, 8, 8));
         centre.setOpaque(false);
 
-        JButton btnArcs    = createStyledButton("Afficher les arcs");
+        JButton btnArcs    = createStyledButton("Afficher les sommet et arcs");
         JButton btnAdj     = createStyledButton("Afficher la matrice d'adjacence");
         JButton btnDistMat = createStyledButton("Afficher la matrice des distances");
-        JButton btnNbSom   = createStyledButton("Afficher le nombre de sommets");
+        JButton btnGraphe   = createStyledButton("Afficher le graphstream");
         JButton btnDistDij = createStyledButton("Afficher les distances (Dijkstra)");
         JButton btnRetour  = createStyledButton("Retour");
 
-        btnArcs.addActionListener(e -> afficherMessage("Arcs du graphe", texteArcs()));
+        btnArcs.addActionListener(e -> afficherMessage("Sommets + Arcs", "Sommets :\n" + texteSommets() + "\n\nArcs :\n" + texteArcs()));
         btnAdj.addActionListener(e -> afficherMessage("Matrice d'adjacence", texteMatriceAdj()));
         btnDistMat.addActionListener(e -> afficherMessage("Matrice des distances", texteMatriceDist()));
-        btnNbSom.addActionListener(e -> afficherMessage("Nombre de sommets", "Nombre de sommets : " + matrice.nb_sommets));
+        btnGraphe.addActionListener(e -> Graphstream.creer_Graphstream(arcs));
         btnDistDij.addActionListener(e -> afficherDistancesDepuisSommetChoisi(f));
         btnRetour.addActionListener(e -> f.dispose());
 
         centre.add(btnArcs);
         centre.add(btnAdj);
         centre.add(btnDistMat);
-        centre.add(btnNbSom);
+        centre.add(btnGraphe);
         centre.add(btnDistDij);
         centre.add(btnRetour);
 
@@ -527,7 +528,13 @@ public class Affichage {
         return sb.toString();
     }
 
-
+    private String texteSommets() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < matrice.nb_sommets; i++) {
+            sb.append("S").append(i).append("\n");
+        }
+        return sb.toString();
+    }
 
 
 
