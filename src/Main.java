@@ -14,6 +14,10 @@ public class Main {
         //m.afficher_matrice_dist();
         //m.afficher_nb_sommets();
 
+
+        //appel de la méthode graphstream GABINNNNNNNNNNNNNNNNNN
+        Graphstream.creer_Graphstream(Arcs);
+
         Graphe graphe = new Graphe(m);
 
         T1_P1_H1 i1 = T1_P1_H1.creer(graphe);
