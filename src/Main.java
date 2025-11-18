@@ -3,8 +3,8 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        ArrayList<Arc> Arcs = new ArrayList<>();
 
+        ArrayList<Arc> Arcs = new ArrayList<>();
         Arc.remplir_tableau(Arcs);
         //Arc.afficher_arcs(Arcs);
 
@@ -26,11 +26,15 @@ public class Main {
         //i1.remplir_itineraire(r1, graphe);
         //i1.afficher_chemin();
 
-        T1_P1_H2 i2 = T1_P1_H2.creer(graphe);
+        //T1_P1_H2 i2 = T1_P1_H2.creer(graphe);
         //i2.afficher_sommets_a_visiter();
-        i2.calculer_tsp();
+        //i2.calculer_tsp();
         //i2.afficher_matrice_tsp();
-        i2.afficher_chemin();
+        //i2.afficher_chemin();
+
+        T1_P2_H1 i3 = new T1_P2_H1(graphe);
+        i3.eulerianCycle();
+        i3.afficher_chemin();
 
         Affichage aff = new Affichage(Arcs, m, graphe);
         aff.lancerGUI();

@@ -14,7 +14,7 @@ public class Arc {
     }
 
     public static void remplir_tableau (ArrayList<Arc> Arcs) {
-        try (BufferedReader br = new BufferedReader(new FileReader("src\\arcs_test.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("src\\arcs_petit.txt"))) {
             String ligne;
             while ((ligne = br.readLine()) != null) {
                 String[] parties = ligne.split(",");

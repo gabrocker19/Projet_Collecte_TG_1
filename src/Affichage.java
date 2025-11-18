@@ -8,6 +8,7 @@ public class Affichage {
     private Matrice matrice;
     private Graphe graphe;
 
+
     public Affichage(ArrayList<Arc> arcs, Matrice matrice, Graphe graphe) {
         this.arcs = arcs;
         this.matrice = matrice;
@@ -71,7 +72,7 @@ public class Affichage {
     // ====== MENU THÈME 1 ======
     private void ouvrirMenuTheme1(JFrame parent) {
         JFrame f = new JFrame("Thème 1 - Ramassage aux pieds des habitations");
-        f.setSize(520, 320);
+        f.setSize(960, 660);
         f.setLocationRelativeTo(parent);
 
         JPanel panel = new JPanel(new BorderLayout(10, 10));
@@ -106,7 +107,7 @@ public class Affichage {
 
     private void ouvrirSousMenu1AffichagesTheme1(JFrame parent) {
         JFrame f = new JFrame("Thème 1 - Affichages du graphe");
-        f.setSize(520, 380);
+        f.setSize(960, 660);
         f.setLocationRelativeTo(parent);
 
         JPanel panel = new JPanel(new BorderLayout(10, 10));
@@ -121,24 +122,24 @@ public class Affichage {
         JPanel centre = new JPanel(new GridLayout(0, 1, 8, 8));
         centre.setOpaque(false);
 
-        JButton btnArcs    = createStyledButton("Afficher les arcs");
+        JButton btnArcs    = createStyledButton("Afficher les sommet et arcs");
         JButton btnAdj     = createStyledButton("Afficher la matrice d'adjacence");
         JButton btnDistMat = createStyledButton("Afficher la matrice des distances");
-        JButton btnNbSom   = createStyledButton("Afficher le nombre de sommets");
+        JButton btnGraphe   = createStyledButton("Afficher le graphstream");
         JButton btnDistDij = createStyledButton("Afficher les distances (Dijkstra)");
         JButton btnRetour  = createStyledButton("Retour");
 
-        btnArcs.addActionListener(e -> afficherMessage("Arcs du graphe", texteArcs()));
+        btnArcs.addActionListener(e -> afficherMessage("Sommets + Arcs", "Sommets :\n" + texteSommets() + "\n\nArcs :\n" + texteArcs()));
         btnAdj.addActionListener(e -> afficherMessage("Matrice d'adjacence", texteMatriceAdj()));
         btnDistMat.addActionListener(e -> afficherMessage("Matrice des distances", texteMatriceDist()));
-        btnNbSom.addActionListener(e -> afficherMessage("Nombre de sommets", "Nombre de sommets : " + matrice.nb_sommets));
+        btnGraphe.addActionListener(e -> Graphstream.creer_Graphstream(arcs));
         btnDistDij.addActionListener(e -> afficherDistancesDepuisSommetChoisi(f));
         btnRetour.addActionListener(e -> f.dispose());
 
         centre.add(btnArcs);
         centre.add(btnAdj);
         centre.add(btnDistMat);
-        centre.add(btnNbSom);
+        centre.add(btnGraphe);
         centre.add(btnDistDij);
         centre.add(btnRetour);
 
@@ -150,7 +151,7 @@ public class Affichage {
 
     private void ouvrirSousMenu2AffichagesTheme1(JFrame parent) {
         JFrame f = new JFrame("Thème 1 - Choix Problématiques");
-        f.setSize(520, 380);
+        f.setSize(960, 660);
         f.setLocationRelativeTo(parent);
 
         JPanel panel = new JPanel(new BorderLayout(10, 10));
@@ -183,9 +184,10 @@ public class Affichage {
         f.setVisible(true);
 
     }
+
     private void OuvrirMenuProblematique1Theme1(JFrame parent) {
         JFrame f = new JFrame("Thème 1 - Choix Hypothèse");
-        f.setSize(520, 380);
+        f.setSize(960, 660);
         f.setLocationRelativeTo(parent);
 
         JPanel panel = new JPanel(new BorderLayout(10, 10));
@@ -205,7 +207,7 @@ public class Affichage {
         JButton btnRetour = createStyledButton("Retour");
 
         btnHypo1.addActionListener(e -> afficherItineraireDepuisFenetre(f));
-        btnHypo2.addActionListener(e -> afficherMessage("chemin plusieurs sommets", texteMatriceAdj()));
+        btnHypo2.addActionListener(e -> afficherHypothese2DepuisFenetre(f));
         btnRetour.addActionListener(e -> f.dispose());
 
         centre.add(btnHypo1);
@@ -221,7 +223,7 @@ public class Affichage {
 
     private void OuvrirMenuPorblematique2Theme1(JFrame parent) {
         JFrame f = new JFrame("Thème 1 - Choix de cas");
-        f.setSize(520, 380);
+        f.setSize(960, 660);
         f.setLocationRelativeTo(parent);
 
         JPanel panel = new JPanel(new BorderLayout(10, 10));
@@ -339,10 +341,84 @@ public class Affichage {
         afficherMessage("Distances de Dijkstra", sb.toString());
     }
 
+    // ====== H2 : choisir sommets à visiter + calcul du cycle TSP ======
+    private void afficherHypothese2DepuisFenetre(JFrame parent) {
+        // 1) on récupère la liste des sommets à visiter
+        java.util.ArrayList<Sommet> aVisiter = demanderSommetsAVisiter(parent);
+        if (aVisiter == null || aVisiter.size() < 2) {
+            return; // annulé ou invalide
+        }
+
+        int nbAV = aVisiter.size();
+
+        // 2) création de l'objet H2 (selon ton constructeur actuel)
+        T1_P1_H2 h2 = new T1_P1_H2(graphe, aVisiter, nbAV);
+
+        // 3) on lance ton algo TSP (construit la matrice + cherche le meilleur cycle)
+        h2.calculer_tsp();
+
+        // 4) on récupère un texte propre pour l'affichage
+        String resultat = h2.texteMeilleurCycle();
+
+        // 5) on affiche dans une boîte de dialogue
+        afficherMessage("Hypothèse 2 - Meilleur cycle", resultat);
+    }
+
+    // ====== Demander les sommets à visiter pour H2 ======
+    private java.util.ArrayList<Sommet> demanderSommetsAVisiter(JFrame parent) {
+
+        String saisie = JOptionPane.showInputDialog(parent, "Entrez les sommets à visiter (hors sommet 0, séparés par des espaces)\n" + "Exemple : 2 3 5\n");
+
+        if (saisie == null || saisie.isBlank()) {
+            return null; // l'utilisateur a annulé
+        }
+        String[] tokens = saisie.trim().split("\\s+");
+        java.util.ArrayList<Sommet> aVisiter = new java.util.ArrayList<>();
+
+        // On ajoute d’abord le sommet de départ = S0
+        aVisiter.add(new Sommet(0));
+
+        try {
+            for (String t : tokens) {
+                int num = Integer.parseInt(t);
+
+                if (num == 0) continue; // inutile, déjà obligé au début
+
+                if (num < 0 || num >= matrice.nb_sommets) {
+                    afficherMessage("Erreur", "Sommet " + num + " invalide (doit être entre 0 et " + (matrice.nb_sommets - 1) + ").");
+                    return null;
+                }
+
+                // éviter les doublons
+                boolean deja = false;
+                for (Sommet s : aVisiter) {
+                    if (s.numero == num) {
+                        deja = true;
+                        break;
+                    }
+                }
+
+                if (!deja) {
+                    aVisiter.add(new Sommet(num));
+                }
+            }
+        } catch (NumberFormatException ex) {
+            afficherMessage("Erreur", "Entrée invalide. Utilise uniquement des entiers séparés par des espaces.");
+            return null;
+        }
+
+        if (aVisiter.size() < 2) {
+            afficherMessage("Erreur", "Il faut ajouter au moins un sommet à visiter, en plus de 0.");
+            return null;
+        }
+
+        return aVisiter;
+    }
+
     // ====== MENU THÈME 2 (placeholder) ======
     private void ouvrirMenuTheme2(JFrame parent) {
         JFrame f = new JFrame("Thème 2 - Points de collecte");
-        f.setSize(520, 300);
+        f.setSize(960, 660);
         f.setLocationRelativeTo(parent);
 
         JPanel panel = new JPanel(new BorderLayout(10, 10));
@@ -375,7 +451,7 @@ public class Affichage {
     // ====== MENU THÈME 3 (placeholder) ======
     private void ouvrirMenuTheme3(JFrame parent) {
         JFrame f = new JFrame("Thème 3 - Planification / Secteurs / Camions");
-        f.setSize(520, 300);
+        f.setSize(960, 660);
         f.setLocationRelativeTo(parent);
 
         JPanel panel = new JPanel(new BorderLayout(10, 10));
@@ -405,7 +481,7 @@ public class Affichage {
         f.setVisible(true);
     }
 
-    // ====== TEXTES POUR LES AFFICHAGES THÈME 1 ======
+    // ====== TEXTES POUR LES AFFICHAGES THÈME 1 P1 H1 ======
     private String texteArcs() {
         if (arcs == null || arcs.isEmpty()) return "Aucun arc.";
         StringBuilder sb = new StringBuilder();
@@ -451,6 +527,18 @@ public class Affichage {
 
         return sb.toString();
     }
+
+    private String texteSommets() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < matrice.nb_sommets; i++) {
+            sb.append("S").append(i).append("\n");
+        }
+        return sb.toString();
+    }
+
+
+
+
 
     // ====== BOUTONS STYLÉS ======
     private JButton createStyledButton(String text) {
