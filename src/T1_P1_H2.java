@@ -30,7 +30,7 @@ public class T1_P1_H2 extends Itineraire {
 
         int n;
         do {
-            System.out.println("Combien de sommets ? (max 10)");
+            System.out.println("Combien de sommets ? (hors depart) (max 10)");
             n = sc.nextInt();
         } while (n < 2 || n > 10);
 

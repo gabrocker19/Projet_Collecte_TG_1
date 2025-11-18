@@ -3,8 +3,8 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        ArrayList<Arc> Arcs = new ArrayList<>();
 
+        ArrayList<Arc> Arcs = new ArrayList<>();
         Arc.remplir_tableau(Arcs);
         //Arc.afficher_arcs(Arcs);
 
@@ -36,12 +36,7 @@ public class Main {
         i3.eulerianCycle();
         i3.afficher_chemin();
 
-        //Affichage aff = new Affichage(Arcs, m, graphe);
-        //aff.lancerGUI();
-
-
-
-        //appel de la méthode graphstream GABINNNNNNNNNNNNNNNNNN
-        Graphstream.creer_Graphstream(Arcs);
+        Affichage aff = new Affichage(Arcs, m, graphe);
+        aff.lancerGUI();
     }
 }
