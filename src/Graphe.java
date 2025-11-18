@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class Graphe {
     Matrice matrice;
@@ -63,4 +64,5 @@ public class Graphe {
             System.out.println("S" + i + " : " + distance[i]);
         }
     }
+
 }

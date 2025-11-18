@@ -30,9 +30,9 @@ public class T1_P1_H2 extends Itineraire {
 
         int n;
         do {
-            System.out.println("Combien de sommets ? (max 9)");
+            System.out.println("Combien de sommets ? (max 10)");
             n = sc.nextInt();
-        } while (n < 2 || n > 9);
+        } while (n < 2 || n > 10);
 
         a_visiter.add(new Sommet(0)); // sommet de départ forcé = 0
 
