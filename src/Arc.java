@@ -46,5 +46,4 @@ public class Arc {
         arc.s_depart=arc.s_arrivee;
         arc.s_arrivee=temp;
     }
-
 }

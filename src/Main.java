@@ -29,13 +29,13 @@ public class Main {
         Graphstream.creer_Graphstream(Arcs);
         Graphstream.chemin_rouge(i1.chemin);*/
 
-        T1_P1_H2 i2 = T1_P1_H2.creer(graphe);
+        /*T1_P1_H2 i2 = T1_P1_H2.creer(graphe);
         i2.afficher_sommets_a_visiter();
         i2.calculer_tsp();
         i2.afficher_matrice_tsp();
         i2.afficher_chemin_complet();
         Graphstream.creer_Graphstream(Arcs);
-        Graphstream.chemin_rouge(i2.chemin);
+        Graphstream.chemin_rouge(i2.chemin);*/
 
         /*T1_P2_H1 i3 = new T1_P2_H1(graphe);
         i3.eulerianCycle();

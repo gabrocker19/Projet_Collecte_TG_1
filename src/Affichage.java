@@ -12,7 +12,7 @@ public class Affichage {
     private Matrice matrice;
     private Graphe graphe;
     private Itineraire T1_P1_H1;
-    private T1_P1_H2 T1_P1_H2;
+    private T1_P1_H2 itin_T1_P1_H2;
     private T1_P2_H1 T1_P2_H1;
     private T1_P2_H2 T1_P2_H2;
     private T1_P2_H3 T1_P2_H3;
@@ -39,8 +39,6 @@ public class Affichage {
         this.matrice = matrice;
         this.graphe = graphe;
         chargerGrapheDepuisFichier(FICHIER_TEST);
-
-
     }
 
     // Recharge arcs / matrice / graphe à partir d'un fichier donné
@@ -256,7 +254,12 @@ public class Affichage {
         JButton btnRetour = createStyledButton("Retour");
 
         btnHypo1.addActionListener(e -> {chargerGrapheDepuisFichier(FICHIER_GENERAL);afficherHypothese1DepuisFenetre(f);Graphstream.creer_Graphstream(arcs);Graphstream.chemin_rouge(T1_P1_H1.chemin);});
-        btnHypo2.addActionListener(e -> {chargerGrapheDepuisFichier(FICHIER_GENERAL);afficherHypothese2DepuisFenetre(f);Graphstream.creer_Graphstream(arcs);Graphstream.chemin_rouge(T1_P1_H2.chemin);});
+        btnHypo2.addActionListener(e -> {
+            chargerGrapheDepuisFichier(FICHIER_GENERAL);
+            afficherHypothese2DepuisFenetre(f);
+            Graphstream.creer_Graphstream(arcs);
+            Graphstream.chemin_rouge(itin_T1_P1_H2.chemin);
+        });
         btnRetour.addActionListener(e -> f.dispose());
 
         centre.add(btnHypo1);
@@ -327,7 +330,7 @@ public class Affichage {
         // Remplir l’itinéraire avec le tableau des précédents
         itin.remplir_itineraire(res, graphe);
 
-        T1_P1_H1 = itin;
+        this.T1_P1_H1 = itin;
 
         // Affichage dans une fenêtre : utilise ta méthode genererChemin()
         afficherMessage("Itinéraire de " + d + " à " + a, itin.genererChemin());
@@ -412,10 +415,12 @@ public class Affichage {
         // 3) on lance ton algo TSP (construit la matrice + cherche le meilleur cycle)
         h2.calculer_tsp();
 
+        h2.chemin = h2.getItineraireComplet();
+
         // 4) on récupère un texte propre pour l'affichage
         String resultat = h2.texteMeilleurCycle();
 
-        this.T1_P1_H2 = h2;
+        this.itin_T1_P1_H2 = h2;
 
         // 5) on affiche dans une boîte de dialogue
         afficherMessage("Hypothèse 2 - Meilleur cycle", resultat);
