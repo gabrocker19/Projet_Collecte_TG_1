@@ -256,7 +256,7 @@ public class Affichage {
         JButton btnRetour = createStyledButton("Retour");
 
         btnHypo1.addActionListener(e -> {chargerGrapheDepuisFichier(FICHIER_GENERAL);afficherHypothese1DepuisFenetre(f);Graphstream.creer_Graphstream(arcs);Graphstream.chemin_rouge(T1_P1_H1.chemin);});
-        btnHypo2.addActionListener(e -> {chargerGrapheDepuisFichier(FICHIER_GENERAL);afficherHypothese2DepuisFenetre(f);Graphstream.creer_Graphstream(arcs);Graphstream.chemin_rouge(T1_P1_H2.meilleur_cycle);});
+        btnHypo2.addActionListener(e -> {chargerGrapheDepuisFichier(FICHIER_GENERAL);afficherHypothese2DepuisFenetre(f);Graphstream.creer_Graphstream(arcs);Graphstream.chemin_rouge(T1_P1_H2.chemin);});
         btnRetour.addActionListener(e -> f.dispose());
 
         centre.add(btnHypo1);
@@ -498,7 +498,6 @@ public class Affichage {
     }
 
 
-
     // ====== T1_P2 - Hypothèse 2 : deux sommets impairs ======
     private void afficherT1P2_H2DepuisFenetre(JFrame parent) {
         try {
@@ -541,6 +540,10 @@ public class Affichage {
                     "Impossible de calculer le parcours pour l'hypothèse 3.\nDétail : " + ex.getMessage());
         }
     }
+
+
+
+
 
     // ====== MENU THÈME 2 (placeholder) ======
 
@@ -678,30 +681,21 @@ public class Affichage {
         btn.setFont(new Font("SansSerif", Font.PLAIN, 14));
         btn.setBackground(BTN_NORMAL);
         btn.setForeground(TEXT_COLOR);
-        btn.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createLineBorder(BTN_BORDER),
-                BorderFactory.createEmptyBorder(8, 12, 8, 12)
-        ));
-        btn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        btn.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(BTN_BORDER), BorderFactory.createEmptyBorder(8, 12, 8, 12)));
+        btn.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 
         // === Effet hover (Option 2) ===
         btn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
                 btn.setBackground(BTN_HOVER);
-                btn.setBorder(BorderFactory.createCompoundBorder(
-                        BorderFactory.createLineBorder(BTN_BORDER, 2),
-                        BorderFactory.createEmptyBorder(8, 12, 8, 12)
-                ));
+                btn.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(BTN_BORDER, 2), BorderFactory.createEmptyBorder(8, 12, 8, 12)));
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
                 btn.setBackground(BTN_NORMAL);
-                btn.setBorder(BorderFactory.createCompoundBorder(
-                        BorderFactory.createLineBorder(BTN_BORDER, 1),
-                        BorderFactory.createEmptyBorder(8, 12, 8, 12)
-                ));
+                btn.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(BTN_BORDER, 1), BorderFactory.createEmptyBorder(8, 12, 8, 12)));
             }
 
             @Override
@@ -735,7 +729,7 @@ public class Affichage {
 
         // Timer pour animer le zoom
         int steps = 10;
-        int delay = 15; // ms
+        int delay = 5; // ms
 
         Timer timer = new Timer(delay, null);
         timer.addActionListener(e -> {

@@ -19,11 +19,17 @@ public class T1_P1_H2 extends Itineraire {
         this.matTSP = new int[nb_a_visiter][nb_a_visiter];
     }
 
+    // -----------------------------------------------------------
+    // Vérifie si un sommet existe déjà dans une liste
+    // -----------------------------------------------------------
     private static boolean contientSommet(ArrayList<Sommet> liste, int numero) {
         for (Sommet s : liste) if (s.numero == numero) return true;
         return false;
     }
 
+    // -----------------------------------------------------------
+    // Création interactive d'une instance
+    // -----------------------------------------------------------
     public static T1_P1_H2 creer(Graphe graphe) {
         Scanner sc = new Scanner(System.in);
         ArrayList<Sommet> a_visiter = new ArrayList<>();
@@ -34,7 +40,7 @@ public class T1_P1_H2 extends Itineraire {
             n = sc.nextInt();
         } while (n < 2 || n > 10);
 
-        a_visiter.add(new Sommet(0)); // sommet de départ forcé = 0
+        a_visiter.add(new Sommet(0)); // sommet de départ = 0
 
         int s;
         for (int i = 1; i < n; i++) {
@@ -48,16 +54,21 @@ public class T1_P1_H2 extends Itineraire {
         return new T1_P1_H2(graphe, a_visiter, n);
     }
 
+    // -----------------------------------------------------------
     public void afficher_sommets_a_visiter() {
         System.out.println("Sommets à visiter :");
         for (Sommet s : a_visiter) System.out.print(s.numero + " ");
         System.out.println();
     }
 
+    // -----------------------------------------------------------
+    // Construction de la matrice des distances pour le TSP
+    // -----------------------------------------------------------
     public void construire_matrice_tsp() {
         for (int i = 0; i < nb_a_visiter; i++) {
             int start = a_visiter.get(i).numero;
             ResultatDijkstra r = graphe.Dijkstra(graphe, start);
+
             for (int j = 0; j < nb_a_visiter; j++) {
                 int end = a_visiter.get(j).numero;
                 matTSP[i][j] = r.distance[end];
@@ -75,19 +86,24 @@ public class T1_P1_H2 extends Itineraire {
         }
     }
 
+    // -----------------------------------------------------------
+    // Calcul du coût d’un cycle donné
+    // -----------------------------------------------------------
     private int coutCycle(ArrayList<Integer> permutation) {
         int total = 0;
         for (int i = 0; i < permutation.size() - 1; i++) {
-            int a = permutation.get(i);
-            int b = permutation.get(i + 1);
-            total += matTSP[a][b];
+            total += matTSP[permutation.get(i)][permutation.get(i + 1)];
         }
         total += matTSP[permutation.getLast()][permutation.getFirst()];
         return total;
     }
 
+    // -----------------------------------------------------------
+    // TSP brute-force
+    // -----------------------------------------------------------
     public void calculer_tsp() {
         construire_matrice_tsp();
+
         ArrayList<Integer> base = new ArrayList<>();
         for (int i = 0; i < nb_a_visiter; i++) base.add(i);
 
@@ -113,12 +129,64 @@ public class T1_P1_H2 extends Itineraire {
             int suivant = reste.get(i);
             ArrayList<Integer> nouveau = new ArrayList<>(courant);
             nouveau.add(suivant);
+
             ArrayList<Integer> nouveau_reste = new ArrayList<>(reste);
             nouveau_reste.remove(i);
+
             rechercher_permutation(start, nouveau, nouveau_reste);
         }
     }
 
+    // -----------------------------------------------------------
+    // Récupération d’un vrai plus court chemin (Dijkstra)
+    // -----------------------------------------------------------
+    private int[] plusCourtChemin(int depart, int arrivee) {
+        ResultatDijkstra res = this.graphe.Dijkstra(this.graphe, depart);
+
+        ArrayList<Integer> chemin = new ArrayList<>();
+        int curr = arrivee;
+
+        if (curr == depart) {
+            return new int[]{depart};
+        }
+
+        while (curr != depart) {
+            chemin.add(0, curr);
+            curr = res.precedent[curr];
+        }
+
+        chemin.add(0, depart);
+        return chemin.stream().mapToInt(i -> i).toArray();
+    }
+
+    // -----------------------------------------------------------
+    // Reconstruit l’itinéraire complet dans le graphe réel
+    // -----------------------------------------------------------
+    public ArrayList<Sommet> getItineraireComplet() {
+        ArrayList<Sommet> cheminComplet = new ArrayList<>();
+
+        if (meilleur_cycle.isEmpty()) return cheminComplet;
+
+        int taille = meilleur_cycle.size();
+
+        for (int i = 0; i < taille; i++) {
+            Sommet s1 = meilleur_cycle.get(i);
+            Sommet s2 = meilleur_cycle.get((i + 1) % taille);
+
+            int[] segment = plusCourtChemin(s1.numero, s2.numero);
+
+            for (int k = 0; k < segment.length; k++) {
+                if (i > 0 && k == 0) continue; // éviter doublons
+                cheminComplet.add(new Sommet(segment[k]));
+            }
+        }
+
+        return cheminComplet;
+    }
+
+    // -----------------------------------------------------------
+    // Affichage simple du cycle TSP
+    // -----------------------------------------------------------
     @Override
     public void afficher_chemin() {
         if (meilleur_cycle.isEmpty()) {
@@ -126,68 +194,82 @@ public class T1_P1_H2 extends Itineraire {
             return;
         }
 
-        System.out.println("Meilleur cycle trouvé :");
-        int j = meilleur_cycle.size() - 1;
+        System.out.println("Meilleur cycle trouvé (TSP simplifié) :");
 
         for (int i = 0; i < meilleur_cycle.size(); i++) {
-            System.out.print(meilleur_cycle.get(i).numero);
+            System.out.print("S" + meilleur_cycle.get(i).numero);
             if (i < meilleur_cycle.size() - 1) {
-                System.out.print(" -> (" + matTSP[i][i + 1] + ") -> ");
+                int a = indexDansAVisiter(meilleur_cycle.get(i));
+                int b = indexDansAVisiter(meilleur_cycle.get(i + 1));
+                System.out.print(" -> (" + matTSP[a][b] + ") -> ");
             }
         }
 
-        System.out.print(" -> (" + matTSP[meilleur_cycle.size() - 1][0] + ") -> ");
-        System.out.println(meilleur_cycle.getFirst().numero);
+        int last = indexDansAVisiter(meilleur_cycle.getLast());
+        int first = indexDansAVisiter(meilleur_cycle.getFirst());
+        System.out.print(" -> (" + matTSP[last][first] + ") -> S" + meilleur_cycle.getFirst().numero);
 
-        System.out.println("Coût total = " + meilleur_cout);
+        System.out.println("\nCoût total = " + meilleur_cout);
     }
 
-    // ====== Construction d'une chaîne pour l'affichage (Swing) ======
+    // -----------------------------------------------------------
+    // Affichage du chemin complet (tous les sommets traversés)
+    // -----------------------------------------------------------
+    public void afficher_chemin_complet() {
+        ArrayList<Sommet> c = getItineraireComplet();
+
+        if (c.isEmpty()) {
+            System.out.println("Impossible de reconstruire le chemin complet.");
+            return;
+        }
+
+        System.out.println("\nChemin COMPLET dans le graphe :");
+
+        for (int i = 0; i < c.size(); i++) {
+            System.out.print("S" + c.get(i).numero);
+            if (i < c.size() - 1) System.out.print(" -> ");
+        }
+        this.chemin = c;
+        System.out.println("\n(Coût TSP : " + meilleur_cout + ")");
+    }
+
+    // -----------------------------------------------------------
+    // Helpers pour l’affichage
+    // -----------------------------------------------------------
     private int indexDansAVisiter(Sommet s) {
         for (int i = 0; i < nb_a_visiter; i++) {
-            if (a_visiter.get(i).numero == s.numero) {
-                return i;
-            }
+            if (a_visiter.get(i).numero == s.numero) return i;
         }
         return -1;
     }
 
     public String texteMeilleurCycle() {
         if (meilleur_cycle == null || meilleur_cycle.isEmpty()) {
-            return "Aucun cycle calculé pour le moment.";
+            return "Aucun cycle calculé.";
         }
 
         StringBuilder sb = new StringBuilder();
 
-        // Rappel des sommets choisis
         sb.append("Sommets à visiter : ");
-        for (Sommet s : a_visiter) {
-            sb.append("S").append(s.numero).append(" ");
-        }
-        sb.append("\n\n");
-
-        sb.append("Meilleur cycle trouvé :\n");
+        for (Sommet s : a_visiter) sb.append("S").append(s.numero).append(" ");
+        sb.append("\n\nMeilleur cycle TSP :\n");
 
         for (int i = 0; i < meilleur_cycle.size(); i++) {
             Sommet s1 = meilleur_cycle.get(i);
-            Sommet s2 = meilleur_cycle.get((i + 1) % meilleur_cycle.size()); // boucle
+            Sommet s2 = meilleur_cycle.get((i + 1) % meilleur_cycle.size());
 
             int i1 = indexDansAVisiter(s1);
             int i2 = indexDansAVisiter(s2);
 
-            sb.append("S").append(s1.numero);
-
-            if (i1 != -1 && i2 != -1) {
-                sb.append(" -> (").append(matTSP[i1][i2]).append(") -> ");
-            } else {
-                sb.append(" -> ");
-            }
+            sb.append("S").append(s1.numero)
+                    .append(" -> (")
+                    .append(matTSP[i1][i2])
+                    .append(") -> ");
         }
 
-        // retour au premier sommet pour fermer le cycle
-        sb.append("S").append(meilleur_cycle.getFirst().numero);
-        sb.append("\n\nDistance total = ").append(meilleur_cout);
+        sb.append("S").append(meilleur_cycle.getFirst().numero)
+                .append("\n\nDistance totale = ").append(meilleur_cout);
+
         return sb.toString();
     }
-
 }
