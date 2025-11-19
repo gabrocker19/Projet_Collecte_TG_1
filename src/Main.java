@@ -4,7 +4,7 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
 
-        final String nom_fichier = "arcs_test";
+        final String nom_fichier = "src\\arcs_impairs";
 
         ArrayList<Arc> Arcs = new ArrayList<>();
         Arc.remplir_tableau(Arcs, nom_fichier);
