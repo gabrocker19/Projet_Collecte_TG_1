@@ -4,10 +4,12 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
 
-        final String nom_fichier = "src\\arcs_gen";
+        final String nom_fichier3 = "src\\arcs_gen";
+        final String nom_fichier_2 = "src\\arcs_impairs";
+        final String nom_fichier_1 = "src\\arcs_pairs";
 
         ArrayList<Arc> Arcs = new ArrayList<>();
-        Arc.remplir_tableau(Arcs, nom_fichier);
+        Arc.remplir_tableau(Arcs, nom_fichier3);//change en fct de l'h
         //Arc.afficher_arcs(Arcs);
 
         Matrice m = new Matrice(Arcs);
