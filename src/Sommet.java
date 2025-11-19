@@ -11,7 +11,7 @@ public class Sommet {
 
     public int getDegre() {
         int degre=0;
-        try (BufferedReader br = new BufferedReader(new FileReader("src\\arcs_petit.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("src\\arcs_.txt"))) {
             String ligne;
             while ((ligne = br.readLine()) != null) {
                 String[] parties = ligne.split(",");
