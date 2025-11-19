@@ -11,11 +11,17 @@ public class Affichage {
     private ArrayList<Arc> arcs;
     private Matrice matrice;
     private Graphe graphe;
+    private Itineraire T1_P1_H1;
+    private T1_P1_H2 T1_P1_H2;
+    private T1_P2_H1 T1_P2_H1;
+    private T1_P2_H2 T1_P2_H2;
+    private T1_P2_H3 T1_P2_H3;
 
     // Noms de fichiers pour les différents cas
     private static final String FICHIER_GENERAL = "src\\arcs_gen";
     private static final String FICHIER_PAIRS   = "src\\arcs_pairs";
     private static final String FICHIER_IMPAIRS = "src\\arcs_impairs";
+    private static final String FICHIER_TEST    = "src\\arcs_test";
 
     // === Palette de couleurs (Option 1) ===
     private static final Color BG_MAIN      = new Color(245, 248, 255);   // fond fenêtre
@@ -32,7 +38,9 @@ public class Affichage {
         this.arcs = arcs;
         this.matrice = matrice;
         this.graphe = graphe;
-        chargerGrapheDepuisFichier(FICHIER_GENERAL);
+        chargerGrapheDepuisFichier(FICHIER_TEST);
+
+
     }
 
     // Recharge arcs / matrice / graphe à partir d'un fichier donné
@@ -247,8 +255,8 @@ public class Affichage {
         JButton btnHypo2  = createStyledButton("Hypothèse 2");
         JButton btnRetour = createStyledButton("Retour");
 
-        btnHypo1.addActionListener(e -> {chargerGrapheDepuisFichier(FICHIER_GENERAL);afficherHypothese1DepuisFenetre(f);});
-        btnHypo2.addActionListener(e -> {chargerGrapheDepuisFichier(FICHIER_GENERAL);afficherHypothese2DepuisFenetre(f);});
+        btnHypo1.addActionListener(e -> {chargerGrapheDepuisFichier(FICHIER_GENERAL);afficherHypothese1DepuisFenetre(f);Graphstream.creer_Graphstream(arcs);Graphstream.chemin_rouge(T1_P1_H1.chemin);});
+        btnHypo2.addActionListener(e -> {chargerGrapheDepuisFichier(FICHIER_GENERAL);afficherHypothese2DepuisFenetre(f);Graphstream.creer_Graphstream(arcs);Graphstream.chemin_rouge(T1_P1_H2.meilleur_cycle);});
         btnRetour.addActionListener(e -> f.dispose());
 
         centre.add(btnHypo1);
@@ -283,9 +291,9 @@ public class Affichage {
         JButton btnCas3  = createStyledButton("Cas Général");
         JButton btnRetour = createStyledButton("Retour");
 
-        btnCas1.addActionListener(e -> {chargerGrapheDepuisFichier(FICHIER_PAIRS); afficherT1P2_H1DepuisFenetre(f);});
-        btnCas2.addActionListener(e -> {chargerGrapheDepuisFichier(FICHIER_IMPAIRS); afficherT1P2_H2DepuisFenetre(f);});
-        btnCas3.addActionListener(e -> {chargerGrapheDepuisFichier(FICHIER_GENERAL);;});
+        btnCas1.addActionListener(e -> {chargerGrapheDepuisFichier(FICHIER_PAIRS); afficherT1P2_H1DepuisFenetre(f);Graphstream.creer_Graphstream(arcs);Graphstream.chemin_rouge(T1_P2_H1.sommets);});
+        btnCas2.addActionListener(e -> {chargerGrapheDepuisFichier(FICHIER_IMPAIRS); afficherT1P2_H2DepuisFenetre(f);Graphstream.creer_Graphstream(arcs);Graphstream.chemin_rouge(T1_P2_H2.sommets);});
+        btnCas3.addActionListener(e -> {chargerGrapheDepuisFichier(FICHIER_GENERAL); afficherT1P2_H3DepuisFenetre(f);Graphstream.creer_Graphstream(arcs);Graphstream.chemin_rouge(T1_P2_H3.sommets);});
         btnRetour.addActionListener(e -> f.dispose());
 
         centre.add(btnCas1);
@@ -318,6 +326,8 @@ public class Affichage {
 
         // Remplir l’itinéraire avec le tableau des précédents
         itin.remplir_itineraire(res, graphe);
+
+        T1_P1_H1 = itin;
 
         // Affichage dans une fenêtre : utilise ta méthode genererChemin()
         afficherMessage("Itinéraire de " + d + " à " + a, itin.genererChemin());
@@ -405,6 +415,8 @@ public class Affichage {
         // 4) on récupère un texte propre pour l'affichage
         String resultat = h2.texteMeilleurCycle();
 
+        this.T1_P1_H2 = h2;
+
         // 5) on affiche dans une boîte de dialogue
         afficherMessage("Hypothèse 2 - Meilleur cycle", resultat);
     }
@@ -477,6 +489,8 @@ public class Affichage {
             // Et une méthode qui renvoie un String affichable
             String texte = p2h1.genererParcours(); // <-- ADAPTE si le nom est différent
 
+            this.T1_P2_H1 = p2h1;
+
             afficherMessage("P2 - Hypothèse 1", texte);
         } catch (Exception ex) {
             afficherMessage("Erreur", "Impossible de calculer le parcours pour l'hypothèse 1.\n" + "Détail : " + ex.getMessage());
@@ -496,19 +510,40 @@ public class Affichage {
             p2h2.eulerPrime();
 
             // Méthode qui renvoie un String à afficher
-            //String texte = p2h2.genererParcours(); // <-- adapte si tu as un autre nom
+            String texte = p2h2.genererParcours(); // <-- adapte si tu as un autre nom
 
-            //afficherMessage("P2 - Hypothèse 2", texte);
+            this.T1_P2_H2 = p2h2;
+
+            afficherMessage("P2 - Hypothèse 2", texte);
         } catch (Exception ex) {
             afficherMessage("Erreur", "Impossible de calculer le parcours pour l'hypothèse 2.\n" + "Détail : " + ex.getMessage());
         }
     }
 
 
+    // ====== T1_P2 - Hypothèse 3 : cas général (Postier chinois) ======
+    private void afficherT1P2_H3DepuisFenetre(JFrame parent) {
+        try {
+            // On crée l'objet H3 avec le graphe courant
+            T1_P2_H3 p2h3 = new T1_P2_H3(graphe);
 
+            // On lance l'algo du postier chinois
+            p2h3.chinesePostman();
 
+            // On récupère le texte du parcours pour l'affichage
+            String texte = p2h3.genererParcours();
+            this.T1_P2_H3 = p2h3;
+            // Et on l'affiche dans une fenêtre Swing
+            afficherMessage("P2 - Hypothèse 3 (Postier chinois)", texte);
+
+        } catch (Exception ex) {
+            afficherMessage("Erreur",
+                    "Impossible de calculer le parcours pour l'hypothèse 3.\nDétail : " + ex.getMessage());
+        }
+    }
 
     // ====== MENU THÈME 2 (placeholder) ======
+
     private void ouvrirMenuTheme2(JFrame parent) {
         JFrame f = new JFrame("Thème 2 - Points de collecte");
         f.setSize(960, 660);
@@ -576,6 +611,12 @@ public class Affichage {
 
         f.setContentPane(panel);
         showWithZoom(f);    }
+
+
+
+
+
+
 
     // ====== TEXTES POUR LES AFFICHAGES THÈME 1 P1 H1 ======
     private String texteArcs() {

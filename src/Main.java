@@ -5,11 +5,12 @@ public class Main {
     public static void main(String[] args) {
 
         final String nom_fichier3 = "src\\arcs_gen";
-        final String nom_fichier_2 = "src\\arcs_impairs";
-        final String nom_fichier_1 = "src\\arcs_pairs";
+        final String nom_fichier2 = "src\\arcs_impairs";
+        final String nom_fichier1 = "src\\arcs_pairs";
+        final String nom_fichier0 = "src\\arcs_test";
 
         ArrayList<Arc> Arcs = new ArrayList<>();
-        Arc.remplir_tableau(Arcs, nom_fichier3);//change en fct de l'h
+        Arc.remplir_tableau(Arcs, nom_fichier0);//change en fct de l'h
         //Arc.afficher_arcs(Arcs);
 
         Matrice m = new Matrice(Arcs);
@@ -54,7 +55,7 @@ public class Main {
         Graphstream.creer_Graphstream(Arcs);
         Graphstream.chemin_rouge(i5.sommets);*/
 
-        //Affichage aff = new Affichage(Arcs, m, graphe);
-        //aff.lancerGUI();
+        Affichage aff = new Affichage(Arcs, m, graphe);
+        aff.lancerGUI();
     }
 }

@@ -134,4 +134,32 @@ public class T1_P2_H3 extends Itineraire {
         System.out.print(last.numero);
         System.out.println("\nDistance totale : " + total);
     }
+
+    public String genererParcours() {
+        if (this.sommets == null || this.sommets.size() < 2) {
+            return "Aucun chemin à afficher (liste de sommets vide).";
+        }
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("Cycle eulérien (Chinese Postman) :\n");
+
+        int total = 0;
+        for (int i = 0; i < this.sommets.size() - 1; i++) {
+            Sommet a = this.sommets.get(i);
+            Sommet b = this.sommets.get(i + 1);
+            int dist = this.graphe.matrice.longeurs[a.numero][b.numero];
+            total += dist;
+            sb.append(a.numero)
+                    .append(" -> (")
+                    .append(dist)
+                    .append(") -> ");
+        }
+
+        Sommet last = this.sommets.get(this.sommets.size() - 1);
+        sb.append(last.numero)
+                .append("\nDistance totale : ")
+                .append(total);
+
+        return sb.toString();
+    }
 }
