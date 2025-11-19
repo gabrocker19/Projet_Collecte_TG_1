@@ -457,9 +457,9 @@ public class Affichage {
             p2h2.eulerPrime();
 
             // Méthode qui renvoie un String à afficher
-            String texte = p2h2.genererParcours(); // <-- adapte si tu as un autre nom
+            //String texte = p2h2.genererParcours(); // <-- adapte si tu as un autre nom
 
-            afficherMessage("P2 - Hypothèse 2", texte);
+            //afficherMessage("P2 - Hypothèse 2", texte);
         } catch (Exception ex) {
             afficherMessage("Erreur", "Impossible de calculer le parcours pour l'hypothèse 2.\n" + "Détail : " + ex.getMessage());
         }
