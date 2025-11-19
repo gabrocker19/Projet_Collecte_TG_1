@@ -40,11 +40,11 @@ public class Main {
         //i4.eulerPrime();
         //i4.afficher_chemin();
 
-        T1_P2_H3 i5 = new T1_P2_H3(graphe);
-        i5.chinesePostman();
-        i5.afficher_chemin();
+        //T1_P2_H3 i5 = new T1_P2_H3(graphe);
+        //i5.chinesePostman();
+        //i5.afficher_chemin();
 
-        //Affichage aff = new Affichage(Arcs, m, graphe);
-        //aff.lancerGUI();
+        Affichage aff = new Affichage(Arcs, m, graphe);
+        aff.lancerGUI();
     }
 }

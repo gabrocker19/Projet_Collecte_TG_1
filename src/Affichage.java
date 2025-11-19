@@ -12,6 +12,11 @@ public class Affichage {
     private Matrice matrice;
     private Graphe graphe;
 
+    // Noms de fichiers pour les différents cas
+    private static final String FICHIER_GENERAL = "src\\arcs_gen";
+    private static final String FICHIER_PAIRS   = "src\\arcs_pairs";
+    private static final String FICHIER_IMPAIRS = "src\\arcs_impairs";
+
     // === Palette de couleurs (Option 1) ===
     private static final Color BG_MAIN      = new Color(245, 248, 255);   // fond fenêtre
     private static final Color BG_PANEL     = new Color(235, 240, 252);   // panneaux internes
@@ -27,7 +32,24 @@ public class Affichage {
         this.arcs = arcs;
         this.matrice = matrice;
         this.graphe = graphe;
+        chargerGrapheDepuisFichier(FICHIER_GENERAL);
     }
+
+    // Recharge arcs / matrice / graphe à partir d'un fichier donné
+    private void chargerGrapheDepuisFichier(String nomFichierSansExtension) {
+        // On recrée la liste d'arcs
+        arcs = new ArrayList<>();
+        Arc.remplir_tableau(arcs, nomFichierSansExtension);
+
+        // On recrée la matrice à partir des arcs
+        matrice = new Matrice(arcs);
+        matrice.remplir_adj_long(arcs);
+
+        // On recrée le graphe
+        graphe = new Graphe(matrice);
+    }
+
+
     // ====== LANCEMENT DE L'IHM ======
     public void lancerGUI() {
         try {
@@ -225,8 +247,8 @@ public class Affichage {
         JButton btnHypo2  = createStyledButton("Hypothèse 2");
         JButton btnRetour = createStyledButton("Retour");
 
-        btnHypo1.addActionListener(e -> afficherHypothese1DepuisFenetre(f));
-        btnHypo2.addActionListener(e -> afficherHypothese2DepuisFenetre(f));
+        btnHypo1.addActionListener(e -> {chargerGrapheDepuisFichier(FICHIER_GENERAL);afficherHypothese1DepuisFenetre(f);});
+        btnHypo2.addActionListener(e -> {chargerGrapheDepuisFichier(FICHIER_GENERAL);afficherHypothese2DepuisFenetre(f);});
         btnRetour.addActionListener(e -> f.dispose());
 
         centre.add(btnHypo1);
@@ -261,9 +283,9 @@ public class Affichage {
         JButton btnCas3  = createStyledButton("Cas Général");
         JButton btnRetour = createStyledButton("Retour");
 
-        btnCas1.addActionListener(e -> afficherT1P2_H1DepuisFenetre(f));
-        btnCas2.addActionListener(e -> afficherT1P2_H2DepuisFenetre(f));
-        btnCas3.addActionListener(e -> afficherMessage("", texteMatriceAdj()));
+        btnCas1.addActionListener(e -> {chargerGrapheDepuisFichier(FICHIER_PAIRS); afficherT1P2_H1DepuisFenetre(f);});
+        btnCas2.addActionListener(e -> {chargerGrapheDepuisFichier(FICHIER_IMPAIRS); afficherT1P2_H2DepuisFenetre(f);});
+        btnCas3.addActionListener(e -> {chargerGrapheDepuisFichier(FICHIER_GENERAL);;});
         btnRetour.addActionListener(e -> f.dispose());
 
         centre.add(btnCas1);
@@ -560,13 +582,7 @@ public class Affichage {
         if (arcs == null || arcs.isEmpty()) return "Aucun arc.";
         StringBuilder sb = new StringBuilder();
         for (Arc arc : arcs) {
-            sb.append("Arc : S")
-                    .append(arc.s_depart.numero)
-                    .append(" -> S")
-                    .append(arc.s_arrivee.numero)
-                    .append("  (distance = ")
-                    .append(arc.distance)
-                    .append(")\n");
+            sb.append("Arc : S").append(arc.s_depart.numero).append(" -> S").append(arc.s_arrivee.numero).append("  (distance = ").append(arc.distance).append(")\n");
         }
         return sb.toString();
     }
