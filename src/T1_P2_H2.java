@@ -25,11 +25,9 @@ public class T1_P2_H2 extends Itineraire {
         }
         int curr;
         if (impairs.isEmpty()) {
-            // Cycle eulérien → départ arbitraire
             curr = 0;
         } else if (impairs.size() == 2) {
-            // Chemin eulérien → départ = premier impair
-            curr = impairs.get(0);
+            curr = impairs.getFirst();
         } else {
             System.out.println("Impossible : plus de 2 sommets impairs");
             return;

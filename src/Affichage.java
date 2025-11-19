@@ -454,7 +454,7 @@ public class Affichage {
             T1_P2_H2 p2h2 = new T1_P2_H2(graphe);
 
             // Méthode qui lance le calcul (à adapter)
-            p2h2.eulerianPathOrCycle();
+            p2h2.eulerPrime();
 
             // Méthode qui renvoie un String à afficher
             String texte = p2h2.genererParcours(); // <-- adapte si tu as un autre nom
