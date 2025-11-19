@@ -4,10 +4,12 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
 
-        final String nom_fichier = "src\\arcs_impairs";
+        final String nom_fichier3 = "src\\arcs_gen";
+        final String nom_fichier_2 = "src\\arcs_impairs";
+        final String nom_fichier_1 = "src\\arcs_pairs";
 
         ArrayList<Arc> Arcs = new ArrayList<>();
-        Arc.remplir_tableau(Arcs, nom_fichier);
+        Arc.remplir_tableau(Arcs, nom_fichier3);//change en fct de l'h
         //Arc.afficher_arcs(Arcs);
 
         Matrice m = new Matrice(Arcs);
@@ -34,9 +36,13 @@ public class Main {
         //i3.eulerianCycle();
         //i3.afficher_chemin();
 
-        T1_P2_H2 i4 = new T1_P2_H2(graphe);
-        i4.eulerPrime();
-        i4.afficher_chemin();
+        //T1_P2_H2 i4 = new T1_P2_H2(graphe);
+        //i4.eulerPrime();
+        //i4.afficher_chemin();
+
+        T1_P2_H3 i5 = new T1_P2_H3(graphe);
+        i5.chinesePostman();
+        i5.afficher_chemin();
 
         //Affichage aff = new Affichage(Arcs, m, graphe);
         //aff.lancerGUI();

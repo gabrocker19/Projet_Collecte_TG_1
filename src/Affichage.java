@@ -1,12 +1,26 @@
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import com.formdev.flatlaf.FlatLightLaf;
+
 
 public class Affichage {
 
     private ArrayList<Arc> arcs;
     private Matrice matrice;
     private Graphe graphe;
+
+    // === Palette de couleurs (Option 1) ===
+    private static final Color BG_MAIN      = new Color(245, 248, 255);   // fond fenêtre
+    private static final Color BG_PANEL     = new Color(235, 240, 252);   // panneaux internes
+    private static final Color BTN_NORMAL   = new Color(210, 225, 255);   // bouton normal
+    private static final Color BTN_HOVER    = new Color(190, 210, 250);   // hover
+    private static final Color BTN_PRESSED  = new Color(170, 195, 240);   // clic
+    private static final Color BTN_BORDER   = new Color(150, 170, 210);
+    private static final Color TITLE_COLOR  = new Color(40, 70, 120);
+    private static final Color TEXT_COLOR   = new Color(30, 30, 30);
 
 
     public Affichage(ArrayList<Arc> arcs, Matrice matrice, Graphe graphe) {
@@ -16,18 +30,26 @@ public class Affichage {
     }
     // ====== LANCEMENT DE L'IHM ======
     public void lancerGUI() {
-        // Look & feel Nimbus
         try {
-            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    UIManager.setLookAndFeel(info.getClassName());
-                    break;
+            // Option 6 : FlatLaf moderne
+            FlatLightLaf.setup();
+        } catch (Exception e) {
+            // Si FlatLaf plante ou n'est pas dispo, on peut garder Nimbus en secours
+            try {
+                for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                    if ("Nimbus".equals(info.getName())) {
+                        UIManager.setLookAndFeel(info.getClassName());
+                        break;
+                    }
                 }
+            } catch (Exception ex) {
+                // on laisse le LAF par défaut
             }
-        } catch (Exception e) { }
+        }
 
         SwingUtilities.invokeLater(this::creerMenuPrincipal);
     }
+
 
     // ====== MENU PRINCIPAL ======
     private void creerMenuPrincipal() {
@@ -38,20 +60,20 @@ public class Affichage {
 
         JPanel panel = new JPanel(new BorderLayout(10, 10));
         panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-        panel.setBackground(new Color(255, 255, 255));
+        panel.setBackground(BG_MAIN);
 
         JLabel titre = new JLabel("Choisir un thème", SwingConstants.CENTER);
         titre.setFont(new Font("SansSerif", Font.BOLD, 24));
-        titre.setForeground(new Color(255, 0, 0));
+        titre.setForeground(TITLE_COLOR);
         panel.add(titre, BorderLayout.NORTH);
 
         JPanel centre = new JPanel(new GridLayout(0, 1, 12, 12));
         centre.setOpaque(false);
 
-        JButton btnTheme1 = createStyledButton("Thème 1 : Ramassage aux pieds des habitations");
-        JButton btnTheme2 = createStyledButton("Thème 2 : Points de collecte");
-        JButton btnTheme3 = createStyledButton("Thème 3 : Planification / Secteurs / Camions");
-        JButton btnQuitter = createStyledButton("Quitter");
+        JButton btnTheme1 = createStyledButton("🏠 Thème 1 : Ramassage aux pieds des habitations");
+        JButton btnTheme2 = createStyledButton("📍 Thème 2 : Points de collecte");
+        JButton btnTheme3 = createStyledButton("🚛 Thème 3 : Planification / Secteurs / Camions");
+        JButton btnQuitter = createStyledButton("✖ Quitter");
 
         btnTheme1.addActionListener(e -> ouvrirMenuTheme1(frame));
         btnTheme2.addActionListener(e -> ouvrirMenuTheme2(frame));
@@ -66,7 +88,7 @@ public class Affichage {
         panel.add(centre, BorderLayout.CENTER);
 
         frame.setContentPane(panel);
-        frame.setVisible(true);
+        showWithZoom(frame);
     }
 
     // ====== MENU THÈME 1 ======
@@ -102,8 +124,7 @@ public class Affichage {
         panel.add(centre, BorderLayout.CENTER);
 
         f.setContentPane(panel);
-        f.setVisible(true);
-    }
+        showWithZoom(f);    }
 
     private void ouvrirSousMenu1AffichagesTheme1(JFrame parent) {
         JFrame f = new JFrame("Thème 1 - Affichages du graphe");
@@ -146,8 +167,7 @@ public class Affichage {
         panel.add(centre, BorderLayout.CENTER);
 
         f.setContentPane(panel);
-        f.setVisible(true);
-    }
+        showWithZoom(f);    }
 
     private void ouvrirSousMenu2AffichagesTheme1(JFrame parent) {
         JFrame f = new JFrame("Thème 1 - Choix Problématiques");
@@ -181,8 +201,7 @@ public class Affichage {
         panel.add(centre, BorderLayout.CENTER);
 
         f.setContentPane(panel);
-        f.setVisible(true);
-
+        showWithZoom(f);
     }
 
     private void OuvrirMenuProblematique1Theme1(JFrame parent) {
@@ -217,8 +236,7 @@ public class Affichage {
         panel.add(centre, BorderLayout.CENTER);
 
         f.setContentPane(panel);
-        f.setVisible(true);
-
+        showWithZoom(f);
     }
 
     private void OuvrirMenuPorblematique2Theme1(JFrame parent) {
@@ -256,8 +274,7 @@ public class Affichage {
         panel.add(centre, BorderLayout.CENTER);
 
         f.setContentPane(panel);
-        f.setVisible(true);
-
+        showWithZoom(f);
     }
 
 
@@ -457,9 +474,9 @@ public class Affichage {
             p2h2.eulerPrime();
 
             // Méthode qui renvoie un String à afficher
-            String texte = p2h2.genererParcours(); // <-- adapte si tu as un autre nom
+            //String texte = p2h2.genererParcours(); // <-- adapte si tu as un autre nom
 
-            afficherMessage("P2 - Hypothèse 2", texte);
+            //afficherMessage("P2 - Hypothèse 2", texte);
         } catch (Exception ex) {
             afficherMessage("Erreur", "Impossible de calculer le parcours pour l'hypothèse 2.\n" + "Détail : " + ex.getMessage());
         }
@@ -499,8 +516,7 @@ public class Affichage {
         panel.add(centre, BorderLayout.CENTER);
 
         f.setContentPane(panel);
-        f.setVisible(true);
-    }
+        showWithZoom(f);    }
 
 
 
@@ -537,8 +553,7 @@ public class Affichage {
         panel.add(centre, BorderLayout.CENTER);
 
         f.setContentPane(panel);
-        f.setVisible(true);
-    }
+        showWithZoom(f);    }
 
     // ====== TEXTES POUR LES AFFICHAGES THÈME 1 P1 H1 ======
     private String texteArcs() {
@@ -604,11 +619,89 @@ public class Affichage {
         JButton btn = new JButton(text);
         btn.setFocusPainted(false);
         btn.setFont(new Font("SansSerif", Font.PLAIN, 14));
-        btn.setBackground(new Color(210, 225, 255));
-        btn.setForeground(new Color(30, 30, 30));
-        btn.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(new Color(150, 170, 210)), BorderFactory.createEmptyBorder(8, 12, 8, 12)));
+        btn.setBackground(BTN_NORMAL);
+        btn.setForeground(TEXT_COLOR);
+        btn.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(BTN_BORDER),
+                BorderFactory.createEmptyBorder(8, 12, 8, 12)
+        ));
+        btn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
+        // === Effet hover (Option 2) ===
+        btn.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                btn.setBackground(BTN_HOVER);
+                btn.setBorder(BorderFactory.createCompoundBorder(
+                        BorderFactory.createLineBorder(BTN_BORDER, 2),
+                        BorderFactory.createEmptyBorder(8, 12, 8, 12)
+                ));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                btn.setBackground(BTN_NORMAL);
+                btn.setBorder(BorderFactory.createCompoundBorder(
+                        BorderFactory.createLineBorder(BTN_BORDER, 1),
+                        BorderFactory.createEmptyBorder(8, 12, 8, 12)
+                ));
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                btn.setBackground(BTN_PRESSED);
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                btn.setBackground(BTN_HOVER);
+            }
+        });
+
         return btn;
     }
+
+    // === Option 5 : petit zoom à l'ouverture des fenêtres ===
+    private void showWithZoom(JFrame frame) {
+        // On récupère la taille finale voulue
+        Dimension target = frame.getSize();
+        int targetW = target.width;
+        int targetH = target.height;
+
+        // Taille de départ (70% de la taille finale)
+        int startW = (int) (targetW * 0.7);
+        int startH = (int) (targetH * 0.7);
+
+        frame.setSize(startW, startH);
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+
+        // Timer pour animer le zoom
+        int steps = 10;
+        int delay = 15; // ms
+
+        Timer timer = new Timer(delay, null);
+        timer.addActionListener(e -> {
+            Dimension current = frame.getSize();
+            int w = current.width;
+            int h = current.height;
+
+            int dw = (targetW - w) / 2;
+            int dh = (targetH - h) / 2;
+
+            if (Math.abs(targetW - w) <= 2 && Math.abs(targetH - h) <= 2) {
+                frame.setSize(targetW, targetH);
+                frame.setLocationRelativeTo(null);
+                timer.stop();
+            } else {
+                frame.setSize(w + dw, h + dh);
+                frame.setLocationRelativeTo(null);
+            }
+        });
+
+        timer.start();
+    }
+
 
     // ====== FENÊTRE DE TEXTE ======
     private void afficherMessage(String titre, String texte) {
