@@ -55,6 +55,49 @@ public class Main {
         Graphstream.creer_Graphstream(Arcs);
         Graphstream.chemin_rouge(i5.sommets);*/
 
+        // ===== TEST THÈME 2 - APPROCHE 1 =====
+
+        // Créer des points de collecte
+        ArrayList<PointCollecte> points = new ArrayList<>();
+
+        // Le dépôt (toujours le premier, contenance = 0)
+        points.add(new PointCollecte(0, 0));
+
+        // Points de collecte avec leurs contenances
+        points.add(new PointCollecte(2, 4));
+        points.add(new PointCollecte(5, 3));
+        points.add(new PointCollecte(8, 3));
+        points.add(new PointCollecte(10, 3));
+        points.add(new PointCollecte(12, 5));
+
+        System.out.println("Points de collecte définis :");
+        for (int i = 0; i < points.size(); i++) {
+            System.out.println("  " + i + " : " + points.get(i));
+        }
+
+        // APPROCHE 1
+        T2_Approche1 approche1 = new T2_Approche1(graphe, points);
+
+        // Calculer la tournée avec l'algorithme du plus proche voisin
+        approche1.calculerTournee();
+
+        // Afficher le résultat
+        approche1.afficherTournee();
+
+        // Visualiser dans GraphStream
+        Graphstream.creer_Graphstream(Arcs);
+        Graphstream.chemin_rouge(approche1.getParcours());
+
+        System.out.println("\n" + "=".repeat(60));
+        System.out.println("DÉCOUPAGE AVEC CAPACITÉS");
+        System.out.println("=".repeat(60));
+
+        // Découper en tournées avec capacité maximale de 10
+        approche1.decouper_en_tournees(10);
+
+        // Afficher les tournées
+        approche1.afficherTournees();
+
         Affichage aff = new Affichage(Arcs, m, graphe);
         aff.lancerGUI();
     }
