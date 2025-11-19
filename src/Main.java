@@ -34,11 +34,11 @@ public class Main {
         //i3.eulerianCycle();
         //i3.afficher_chemin();
 
-        T1_P2_H2 i4 = new T1_P2_H2(graphe);
-        i4.eulerPrime();
-        i4.afficher_chemin();
+        //T1_P2_H2 i4 = new T1_P2_H2(graphe);
+        //i4.eulerPrime();
+        //i4.afficher_chemin();
 
-        //Affichage aff = new Affichage(Arcs, m, graphe);
-        //aff.lancerGUI();
+        Affichage aff = new Affichage(Arcs, m, graphe);
+        aff.lancerGUI();
     }
 }
