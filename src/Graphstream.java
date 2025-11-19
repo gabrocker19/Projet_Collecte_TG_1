@@ -11,10 +11,7 @@ public class Graphstream {
         Graph graph = new SingleGraph("graphstream");
 
         // Styles CSS
-        graph.setAttribute("ui.stylesheet",
-                "node { size: 30px; fill-color: lightblue; text-size: 20px; text-color: black; text-alignment: center; }" +
-                        "edge { text-size: 15px; text-color: black; }"
-        );
+        graph.setAttribute("ui.stylesheet", "node { size: 30px; fill-color: lightblue; text-size: 20px; text-color: black; text-alignment: center; }" + "edge { text-size: 15px; text-color: black; }");
         graph.setAttribute("ui.quality");
         graph.setAttribute("ui.antialias");
 

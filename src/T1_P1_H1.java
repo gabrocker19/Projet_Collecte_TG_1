@@ -23,4 +23,3 @@ public class T1_P1_H1 extends Itineraire {
         return new T1_P1_H1(new Sommet(d), new Sommet(a), graphe);
     }
 }
-

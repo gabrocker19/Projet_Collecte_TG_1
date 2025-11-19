@@ -206,7 +206,7 @@ public class Affichage {
         JButton btnHypo2  = createStyledButton("Hypothèse 2");
         JButton btnRetour = createStyledButton("Retour");
 
-        btnHypo1.addActionListener(e -> afficherItineraireDepuisFenetre(f));
+        btnHypo1.addActionListener(e -> afficherHypothese1DepuisFenetre(f));
         btnHypo2.addActionListener(e -> afficherHypothese2DepuisFenetre(f));
         btnRetour.addActionListener(e -> f.dispose());
 
@@ -238,13 +238,13 @@ public class Affichage {
         JPanel centre = new JPanel(new GridLayout(0, 1, 12, 12));
         centre.setOpaque(false);
 
-        JButton btnCas1  = createStyledButton("Cas idéal");
-        JButton btnCas2  = createStyledButton("Cas moins trivial");
-        JButton btnCas3  = createStyledButton("Cas général");
+        JButton btnCas1  = createStyledButton("Cas Paire");
+        JButton btnCas2  = createStyledButton("Cas Impaire");
+        JButton btnCas3  = createStyledButton("Cas Général");
         JButton btnRetour = createStyledButton("Retour");
 
-        btnCas1.addActionListener(e -> afficherMessage("", texteArcs()));
-        btnCas2.addActionListener(e -> afficherMessage("", texteMatriceAdj()));
+        btnCas1.addActionListener(e -> afficherT1P2_H1DepuisFenetre(f));
+        btnCas2.addActionListener(e -> afficherT1P2_H2DepuisFenetre(f));
         btnCas3.addActionListener(e -> afficherMessage("", texteMatriceAdj()));
         btnRetour.addActionListener(e -> f.dispose());
 
@@ -260,8 +260,11 @@ public class Affichage {
 
     }
 
+
+
+
     // ====== Choix départ/arrivée + calcul de l’itinéraire ======
-    private void afficherItineraireDepuisFenetre(JFrame parent) {
+    private void afficherHypothese1DepuisFenetre(JFrame parent) {
         int[] da = demanderDepartArrivee(parent);
         if (da == null) return; // annulé ou invalide
 
@@ -341,6 +344,9 @@ public class Affichage {
         afficherMessage("Distances de Dijkstra", sb.toString());
     }
 
+
+
+
     // ====== H2 : choisir sommets à visiter + calcul du cycle TSP ======
     private void afficherHypothese2DepuisFenetre(JFrame parent) {
         // 1) on récupère la liste des sommets à visiter
@@ -415,6 +421,54 @@ public class Affichage {
         return aVisiter;
     }
 
+
+
+
+    // ====== T1_P2 - Hypothèse 1 : cas idéal (tous sommets pairs) ======
+    private void afficherT1P2_H1DepuisFenetre(JFrame parent) {
+        try {
+            // On suppose que ton constructeur ressemble à ça :
+            // T1_P2_H1(Graphe g)
+            T1_P2_H1 p2h1 = new T1_P2_H1(graphe);
+
+            // On suppose que tu as une méthode qui lance le calcul, à adapter si besoin :
+            // ex : p2h1.resoudre(), p2h1.calculer_cycle(), etc.
+            p2h1.eulerianCycle();
+
+            // Et une méthode qui renvoie un String affichable
+            String texte = p2h1.genererParcours(); // <-- ADAPTE si le nom est différent
+
+            afficherMessage("P2 - Hypothèse 1", texte);
+        } catch (Exception ex) {
+            afficherMessage("Erreur", "Impossible de calculer le parcours pour l'hypothèse 1.\n" + "Détail : " + ex.getMessage());
+        }
+    }
+
+
+
+    // ====== T1_P2 - Hypothèse 2 : deux sommets impairs ======
+    private void afficherT1P2_H2DepuisFenetre(JFrame parent) {
+        try {
+            // On suppose que ton constructeur ressemble à ça :
+            // T1_P2_H2(Graphe g)
+            T1_P2_H2 p2h2 = new T1_P2_H2(graphe);
+
+            // Méthode qui lance le calcul (à adapter)
+            p2h2.eulerPrime();
+
+            // Méthode qui renvoie un String à afficher
+            String texte = p2h2.genererParcours(); // <-- adapte si tu as un autre nom
+
+            afficherMessage("P2 - Hypothèse 2", texte);
+        } catch (Exception ex) {
+            afficherMessage("Erreur", "Impossible de calculer le parcours pour l'hypothèse 2.\n" + "Détail : " + ex.getMessage());
+        }
+    }
+
+
+
+
+
     // ====== MENU THÈME 2 (placeholder) ======
     private void ouvrirMenuTheme2(JFrame parent) {
         JFrame f = new JFrame("Thème 2 - Points de collecte");
@@ -447,6 +501,11 @@ public class Affichage {
         f.setContentPane(panel);
         f.setVisible(true);
     }
+
+
+
+
+
 
     // ====== MENU THÈME 3 (placeholder) ======
     private void ouvrirMenuTheme3(JFrame parent) {

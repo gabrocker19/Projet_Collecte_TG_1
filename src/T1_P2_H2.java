@@ -10,49 +10,45 @@ public class T1_P2_H2 extends Itineraire {
         this.sommets = new ArrayList<>();
     }
 
-    /** -------------------------
-     *    CALCUL DU CYCLE / CHEMIN EULÉRIEN
-     *  ------------------------- */
-    public void eulerianPathOrCycle() {
+    /** ============================
+     *       CYCLE EULERIEN
+     *  ============================ */
+    public void eulerPrime() {
 
         int n = this.graphe.nb_sommets;
 
-        // Copie de l'adjacence pour ne pas détruire le graphe original
+        // Copier la matrice d’adjacence
         int[][] adjCopy = new int[n][n];
         for (int i = 0; i < n; i++)
             System.arraycopy(this.graphe.matrice.adj[i], 0, adjCopy[i], 0, n);
 
-        // Détecter les sommets impairs
-        ArrayList<Integer> impairs = new ArrayList<>();
+        // Vérifier que tous les sommets sont pairs
         for (int i = 0; i < n; i++) {
             int deg = 0;
             for (int j = 0; j < n; j++)
                 deg += adjCopy[i][j];
-            if (deg % 2 == 1)
-                impairs.add(i);
+
+            if (deg % 2 != 0) {
+                System.out.println("Impossible : le graphe n'a pas tous ses sommets pairs. Pas de cycle eulérien.");
+                return;
+            }
         }
 
-        int curr;
-        if (impairs.size() == 0) {
-            // Cycle eulérien → départ arbitraire
-            curr = 0;
-        } else if (impairs.size() == 2) {
-            // Chemin eulérien → départ = premier impair
-            curr = impairs.get(0);
-        } else {
-            System.out.println("Impossible : plus de 2 sommets impairs");
-            return;
-        }
+        // On impose le départ à 0
+        int curr = 0;
 
         Stack<Integer> stack = new Stack<>();
-        stack.push(curr);
         ArrayList<Sommet> path = new ArrayList<>();
+
+        stack.push(curr);
 
         while (!stack.isEmpty()) {
             boolean hasEdge = false;
 
+            // Cherche un voisin disponible
             for (int next = 0; next < n; next++) {
                 if (adjCopy[curr][next] > 0) {
+
                     adjCopy[curr][next]--;
                     adjCopy[next][curr]--;
 
@@ -72,18 +68,19 @@ public class T1_P2_H2 extends Itineraire {
         this.sommets = path;
     }
 
-    /** -------------------------
-     *      AFFICHAGE FORMATÉ
-     *      0 -> (distance) -> 1 ...
-     *  ------------------------- */
+    /** ============================
+     *        AFFICHAGE
+     *  ============================ */
     @Override
     public void afficher_chemin() {
+
         if (this.sommets.size() < 2) {
-            System.out.println("Aucun chemin à afficher.");
+            System.out.println("Aucun cycle à afficher.");
             return;
         }
 
-        System.out.println("Chemin / Cycle eulérien :");
+        System.out.println("Cycle eulérien :");
+
         int total = 0;
 
         for (int i = 0; i < this.sommets.size() - 1; i++) {
@@ -94,10 +91,19 @@ public class T1_P2_H2 extends Itineraire {
             System.out.print(a.numero + " -> (" + dist + ") -> ");
         }
 
-        // Afficher le dernier sommet (fin du chemin)
-        Sommet last = this.sommets.get(this.sommets.size() - 1);
+        Sommet last = this.sommets.getLast();
         System.out.print(last.numero);
 
         System.out.println("\nDistance totale : " + total);
+    }
+
+    public String genererParcours() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Cycle eulérien : ");
+        for (Sommet s : sommets) {
+            sb.append(s.numero).append(" -> ");
+        }
+        sb.append("FIN");
+        return sb.toString();
     }
 }

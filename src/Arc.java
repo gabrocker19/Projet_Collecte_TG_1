@@ -13,8 +13,8 @@ public class Arc {
         this.distance=distance;
     }
 
-    public static void remplir_tableau (ArrayList<Arc> Arcs) {
-        try (BufferedReader br = new BufferedReader(new FileReader("src\\arcs_.txt"))) {
+    public static void remplir_tableau (ArrayList<Arc> Arcs, String nom_fichier) {
+        try (BufferedReader br = new BufferedReader(new FileReader(nom_fichier + ".txt"))) {
             String ligne;
             while ((ligne = br.readLine()) != null) {
                 String[] parties = ligne.split(",");
