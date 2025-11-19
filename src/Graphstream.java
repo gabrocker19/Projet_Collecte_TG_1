@@ -56,7 +56,7 @@ public class Graphstream {
 
             // création d'arc
             if (graph.getEdge(idAB) == null && graph.getEdge(idBA) == null) {
-                Edge e = graph.addEdge(idAB, depart, arrivee, false);  // false veut dire que le graph est non orienté
+                Edge e = graph.addEdge(idAB, depart, arrivee);  // false veut dire que le graph est non orienté
                 e.setAttribute("ui.label", arc.distance);
                 e.setAttribute("ui.class", "normal");
             }
