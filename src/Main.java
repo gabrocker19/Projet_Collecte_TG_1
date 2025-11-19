@@ -28,13 +28,14 @@ public class Main {
         //i2.afficher_matrice_tsp();
         //i2.afficher_chemin();
 
-        T1_P2_H1 i3 = new T1_P2_H1(graphe);
+        /*T1_P2_H1 i3 = new T1_P2_H1(graphe);
         i3.eulerianCycle();
         i3.afficher_chemin();
 
         T1_P2_H2 i4 = new T1_P2_H2(graphe);
         i4.eulerianPathOrCycle();
         i4.afficher_chemin();
+         */
 
         Affichage aff = new Affichage(Arcs, m, graphe);
         aff.lancerGUI();

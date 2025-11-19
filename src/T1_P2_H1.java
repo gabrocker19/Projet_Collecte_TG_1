@@ -82,5 +82,16 @@ public class T1_P2_H1 extends Itineraire {
         System.out.println("\nDistance totale : " + total);
     }
 
+    public String genererParcours() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Parcours eulérien :\n");
+        for (Sommet s : sommets) {
+            sb.append("S").append(s.numero).append(" -> ");
+        }
+        sb.append("FIN");
+        return sb.toString();
+    }
+
+
 
 }
