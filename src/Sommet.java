@@ -9,9 +9,9 @@ public class Sommet {
         this.numero=numero;
     }
 
-    public int getDegre() {
+    public int getDegre(String nom_fichier) {
         int degre=0;
-        try (BufferedReader br = new BufferedReader(new FileReader("src\\arcs_impairs.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(nom_fichier+".txt"))) {
             String ligne;
             while ((ligne = br.readLine()) != null) {
                 String[] parties = ligne.split(",");

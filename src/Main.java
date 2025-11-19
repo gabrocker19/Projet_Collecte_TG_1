@@ -4,8 +4,10 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
 
+        final String nom_fichier = "arcs_test";
+
         ArrayList<Arc> Arcs = new ArrayList<>();
-        Arc.remplir_tableau(Arcs);
+        Arc.remplir_tableau(Arcs, nom_fichier);
         //Arc.afficher_arcs(Arcs);
 
         Matrice m = new Matrice(Arcs);
