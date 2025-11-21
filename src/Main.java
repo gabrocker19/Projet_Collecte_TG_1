@@ -1,5 +1,7 @@
 import java.io.*;
 import java.util.*;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class Main {
     public static void main(String[] args) {
@@ -10,7 +12,7 @@ public class Main {
         final String nom_fichier0 = "src\\arcs_test";
 
         ArrayList<Arc> Arcs = new ArrayList<>();
-        Arc.remplir_tableau(Arcs, nom_fichier3);//change en fct de l'h
+        Arc.remplir_tableau(Arcs, nom_fichier0);//change en fct de l'h
         //Arc.afficher_arcs(Arcs);
 
         Matrice m = new Matrice(Arcs);
@@ -54,6 +56,9 @@ public class Main {
         i5.afficher_chemin();
         Graphstream.creer_Graphstream(Arcs);
         Graphstream.chemin_rouge(i5.sommets);*/
+
+
+
 
         // ===== TEST THÈME 2 - APPROCHE 1 =====
 

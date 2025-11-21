@@ -35,7 +35,7 @@ public class T2_Approche1 {
     // === ALGORITHME DU PLUS PROCHE VOISIN ===
     public void calculerTournee() {
         System.out.println("\n╔════════════════════════════════════════════════════════╗");
-        System.out.println("║     APPROCHE 1 : PLUS PROCHE VOISIN (GREEDY)          ║");
+        System.out.println("║     APPROCHE 1 : PLUS PROCHE VOISIN (GREEDY)           ║");
         System.out.println("╚════════════════════════════════════════════════════════╝\n");
 
         if (pointsCollecte.isEmpty()) {
@@ -160,6 +160,7 @@ public class T2_Approche1 {
                 tourneeActuelle.chargeActuelle += point.contenance;
             } else {
                 // Capacité dépassée → finaliser la tournée actuelle
+
                 if (!tourneeActuelle.points.isEmpty()) {
                     calculerDistanceTournee(tourneeActuelle, depot);
                     tournees.add(tourneeActuelle);

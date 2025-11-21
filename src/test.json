@@ -1,0 +1,1143 @@
+{
+  "type": "FeatureCollection",
+  "generator": "overpass-turbo",
+  "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
+  "timestamp": "2025-11-21T19:52:13Z",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/4039215",
+        "cycleway": "no",
+        "highway": "tertiary",
+        "lane_markings": "no",
+        "lit": "yes",
+        "maxspeed": "30",
+        "name": "Avenue du Château",
+        "parking:lane:right:parallel": "street_side",
+        "parking:left": "no",
+        "parking:right": "yes",
+        "parking:right:orientation": "parallel",
+        "sidewalk:both": "separate",
+        "sidewalk:both:surface": "paving_stones",
+        "smoothness": "good",
+        "surface": "sett",
+        "width": "6"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.4364323,
+            48.8447959
+          ],
+          [
+            2.436459,
+            48.8449672
+          ],
+          [
+            2.4365257,
+            48.8453244
+          ],
+          [
+            2.4365896,
+            48.8456624
+          ],
+          [
+            2.4367151,
+            48.8462735
+          ],
+          [
+            2.4367325,
+            48.846361
+          ],
+          [
+            2.4367475,
+            48.8464395
+          ],
+          [
+            2.436879,
+            48.8471068
+          ],
+          [
+            2.4368931,
+            48.8471781
+          ],
+          [
+            2.436908,
+            48.8472528
+          ],
+          [
+            2.4369207,
+            48.8473199
+          ],
+          [
+            2.4369594,
+            48.8475178
+          ],
+          [
+            2.4369699,
+            48.8475774
+          ]
+        ]
+      },
+      "id": "way/4039215"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/22736884",
+        "cycleway:both": "no",
+        "highway": "residential",
+        "lit": "yes",
+        "maxspeed": "30",
+        "name": "Rue Saulpic",
+        "oneway": "yes",
+        "oneway:bicycle": "no",
+        "parking:both": "yes",
+        "parking:both:orientation": "parallel",
+        "parking:lane:both:parallel": "street_side",
+        "sidewalk:both": "separate",
+        "sidewalk:both:surface": "paving_stones",
+        "smoothness": "good",
+        "source:maxspeed": "sign",
+        "surface": "sett",
+        "width": "4"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.4346796,
+            48.8465548
+          ],
+          [
+            2.4347371,
+            48.8465501
+          ],
+          [
+            2.435094,
+            48.8465181
+          ],
+          [
+            2.4352027,
+            48.8465105
+          ],
+          [
+            2.4353064,
+            48.8465017
+          ],
+          [
+            2.4366014,
+            48.8463841
+          ],
+          [
+            2.4367325,
+            48.846361
+          ]
+        ]
+      },
+      "id": "way/22736884"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/22736892",
+        "cycleway:both": "no",
+        "highway": "residential",
+        "lit": "yes",
+        "maxspeed": "30",
+        "maxspeed:type": "FR:zone30",
+        "name": "Rue Villebois-Mareuil",
+        "note": "Expérimentation jusqu'au 16 mai 2021 d'inversion de sens de circulation sens Ouest-Est Rue Villebois Mareuil",
+        "oneway": "yes",
+        "oneway:bicycle": "no",
+        "parking:both": "no",
+        "sidewalk:both": "separate",
+        "sidewalk:both:surface": "asphalt",
+        "smoothness": "good",
+        "surface": "asphalt",
+        "width": "3"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.4327316,
+            48.8466284
+          ],
+          [
+            2.4327913,
+            48.8466194
+          ],
+          [
+            2.433663,
+            48.846498
+          ],
+          [
+            2.4346215,
+            48.8463661
+          ],
+          [
+            2.4346762,
+            48.8463605
+          ]
+        ]
+      },
+      "id": "way/22736892"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/22736893",
+        "cycleway:both": "no",
+        "highway": "residential",
+        "lit": "yes",
+        "maxspeed": "30",
+        "maxspeed:type": "FR:zone30",
+        "name": "Rue Eugénie Gérard",
+        "oneway": "yes",
+        "oneway:bicycle": "no",
+        "parking:both": "no",
+        "sidewalk:left": "separate",
+        "sidewalk:left:surface": "asphalt",
+        "sidewalk:right": "yes",
+        "smoothness": "excellent",
+        "surface": "asphalt",
+        "width": "3"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.433663,
+            48.846498
+          ],
+          [
+            2.4336497,
+            48.8464653
+          ],
+          [
+            2.4335596,
+            48.8462585
+          ],
+          [
+            2.4335342,
+            48.8462312
+          ],
+          [
+            2.4334833,
+            48.8462094
+          ]
+        ]
+      },
+      "id": "way/22736893"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/22880417",
+        "cycleway:both": "no",
+        "highway": "residential",
+        "lit": "yes",
+        "maxspeed": "30",
+        "maxspeed:type": "FR:zone30",
+        "name": "Rue Lejemptel",
+        "oneway": "yes",
+        "oneway:bicycle": "no",
+        "parking:both": "street_side",
+        "parking:both:orientation": "parallel",
+        "parking:left:markings": "yes",
+        "sidewalk:both:surface": "paving_stones",
+        "sidewalk:left": "separate",
+        "sidewalk:right": "separate",
+        "smoothness": "good",
+        "surface": "sett",
+        "width": "4"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.4390042,
+            48.8458611
+          ],
+          [
+            2.4388819,
+            48.8458841
+          ],
+          [
+            2.4383113,
+            48.8460119
+          ],
+          [
+            2.4382169,
+            48.8460339
+          ],
+          [
+            2.4381242,
+            48.8460538
+          ],
+          [
+            2.4368648,
+            48.8463333
+          ],
+          [
+            2.4367325,
+            48.846361
+          ]
+        ]
+      },
+      "id": "way/22880417"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/22880450",
+        "cycleway": "lane",
+        "cycleway:lane": "exclusive",
+        "grande_circulation": "yes",
+        "highway": "primary",
+        "lanes": "4",
+        "lit": "yes",
+        "maxspeed": "50",
+        "name": "Avenue de Paris",
+        "name:etymology:wikidata": "Q90",
+        "old_ref": "N 34",
+        "parking:left": "street_side",
+        "parking:left:orientation": "parallel",
+        "parking:right": "no",
+        "ref": "D 120",
+        "sidewalk:both": "separate",
+        "sidewalk:left:surface": "paving_stones",
+        "sidewalk:right:surface": "sett",
+        "smoothness": "good",
+        "surface": "asphalt"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.4357906,
+            48.8448465
+          ],
+          [
+            2.4362692,
+            48.8448062
+          ],
+          [
+            2.4364323,
+            48.8447959
+          ]
+        ]
+      },
+      "id": "way/22880450"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/34858385",
+        "cycleway:both": "no",
+        "highway": "residential",
+        "lit": "yes",
+        "maxspeed": "30",
+        "name": "Rue de Montreuil",
+        "oneway": "yes",
+        "oneway:bicycle": "no",
+        "parking:left": "street_side",
+        "parking:left:orientation": "parallel",
+        "parking:right": "no",
+        "sidewalk:both": "separate",
+        "sidewalk:both:surface": "paving_stones",
+        "smoothness": "good",
+        "source:maxspeed": "FR:zone30",
+        "surface": "sett",
+        "width": "3.3"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.43463,
+            48.8455238
+          ],
+          [
+            2.4345841,
+            48.845083
+          ],
+          [
+            2.4345557,
+            48.8449623
+          ]
+        ]
+      },
+      "id": "way/34858385"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/34858391",
+        "abandoned:railway": "2021-04",
+        "cycleway:both": "no",
+        "highway": "tertiary",
+        "lanes": "2",
+        "lit": "yes",
+        "maxspeed": "30",
+        "maxspeed:type": "FR:urban",
+        "name": "Avenue du Général de Gaulle",
+        "parking:both": "street_side",
+        "parking:both:orientation": "parallel",
+        "ref": "D 280",
+        "sidewalk:left": "separate",
+        "sidewalk:left:surface": "asphalt",
+        "sidewalk:right": "no",
+        "smoothness": "good",
+        "surface": "asphalt",
+        "survey:date": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.4339623,
+            48.8436115
+          ],
+          [
+            2.4341988,
+            48.8436972
+          ],
+          [
+            2.4342368,
+            48.8437737
+          ],
+          [
+            2.4342604,
+            48.8438564
+          ],
+          [
+            2.4343656,
+            48.8442171
+          ],
+          [
+            2.4345321,
+            48.8448667
+          ],
+          [
+            2.4345405,
+            48.8449016
+          ],
+          [
+            2.4345557,
+            48.8449623
+          ]
+        ]
+      },
+      "id": "way/34858391"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/40036695",
+        "access:lanes:forward": "yes|yes|no",
+        "bus:lanes:forward": "yes|yes|designated",
+        "cycleway:both": "lane",
+        "cycleway:both:lane": "exclusive",
+        "grande_circulation": "yes",
+        "highway": "primary",
+        "lanes": "5",
+        "lanes:backward": "2",
+        "lanes:forward": "3",
+        "lit": "yes",
+        "maxspeed": "50",
+        "name": "Avenue de Paris",
+        "name:etymology:wikidata": "Q90",
+        "old_ref": "N 34",
+        "parking:both": "no",
+        "ref": "D 120",
+        "sidewalk:both": "separate",
+        "smoothness": "good",
+        "surface": "asphalt"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.4364323,
+            48.8447959
+          ],
+          [
+            2.4365663,
+            48.8447852
+          ],
+          [
+            2.4368784,
+            48.8447609
+          ],
+          [
+            2.4370931,
+            48.8447415
+          ]
+        ]
+      },
+      "id": "way/40036695"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/103370814",
+        "access": "private",
+        "highway": "service",
+        "motor_vehicle": "private",
+        "surface": "sett"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.4363851,
+            48.8445834
+          ],
+          [
+            2.4364124,
+            48.8447132
+          ],
+          [
+            2.4364323,
+            48.8447959
+          ]
+        ]
+      },
+      "id": "way/103370814"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/103370815",
+        "bridge": "yes",
+        "highway": "service",
+        "layer": "1",
+        "lit": "yes",
+        "maxweight:signed": "no",
+        "surface": "sett"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.4363414,
+            48.8443635
+          ],
+          [
+            2.4363661,
+            48.8444904
+          ]
+        ]
+      },
+      "id": "way/103370815"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/118327272",
+        "cycleway:both": "no",
+        "highway": "residential",
+        "lit": "yes",
+        "maxspeed": "30",
+        "name": "Rue de Montreuil",
+        "oneway": "yes",
+        "oneway:bicycle": "no",
+        "parking:left": "street_side",
+        "parking:left:orientation": "parallel",
+        "parking:right": "no",
+        "sidewalk:both": "separate",
+        "sidewalk:both:surface": "paving_stones",
+        "smoothness": "good",
+        "source:maxspeed": "FR:zone30",
+        "surface": "sett",
+        "width": "3.3"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.4346762,
+            48.8463605
+          ],
+          [
+            2.4346354,
+            48.8455959
+          ],
+          [
+            2.43463,
+            48.8455238
+          ]
+        ]
+      },
+      "id": "way/118327272"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/268274769",
+        "cycleway:both": "no",
+        "highway": "residential",
+        "lit": "yes",
+        "maxspeed": "30",
+        "name": "Rue Robert Giraudineau",
+        "oneway": "yes",
+        "oneway:bicycle": "no",
+        "parking:both": "yes",
+        "parking:both:orientation": "parallel",
+        "parking:lane:both:parallel": "street_side",
+        "sidewalk:both": "separate",
+        "sidewalk:both:surface": "paving_stones",
+        "source:maxspeed": "sign",
+        "source:width": "ARCore",
+        "surface": "sett",
+        "width": "3.5"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.4352027,
+            48.8465105
+          ],
+          [
+            2.4351955,
+            48.846441
+          ],
+          [
+            2.435119,
+            48.8450025
+          ],
+          [
+            2.4351145,
+            48.8449456
+          ]
+        ]
+      },
+      "id": "way/268274769"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/463965961",
+        "cycleway": "separate",
+        "grande_circulation": "yes",
+        "highway": "primary",
+        "lit": "yes",
+        "maxspeed": "50",
+        "name": "Avenue de Paris",
+        "name:etymology:wikidata": "Q90",
+        "old_ref": "N 34",
+        "oneway": "no",
+        "parking:both": "lane",
+        "ref": "D 120",
+        "source:maxspeed": "sign",
+        "surface": "asphalt",
+        "turn:lanes": "through|through;right"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.4282364,
+            48.8455211
+          ],
+          [
+            2.4284847,
+            48.8454969
+          ],
+          [
+            2.4285548,
+            48.8454913
+          ],
+          [
+            2.4288272,
+            48.8454666
+          ],
+          [
+            2.4289739,
+            48.8454537
+          ],
+          [
+            2.4306417,
+            48.8453071
+          ],
+          [
+            2.431374,
+            48.8452441
+          ],
+          [
+            2.4314112,
+            48.8452405
+          ],
+          [
+            2.4315636,
+            48.8452277
+          ],
+          [
+            2.4316823,
+            48.8452177
+          ],
+          [
+            2.4317179,
+            48.8452145
+          ],
+          [
+            2.4321387,
+            48.8451771
+          ],
+          [
+            2.4321709,
+            48.845174
+          ],
+          [
+            2.432663,
+            48.8451314
+          ],
+          [
+            2.4344286,
+            48.8449735
+          ],
+          [
+            2.4344551,
+            48.8449711
+          ],
+          [
+            2.4345557,
+            48.8449623
+          ]
+        ]
+      },
+      "id": "way/463965961"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/598605587",
+        "cycleway:left": "no",
+        "cycleway:right": "lane",
+        "cycleway:right:lane": "exclusive",
+        "grande_circulation": "yes",
+        "highway": "primary",
+        "lanes": "3",
+        "lit": "yes",
+        "maxspeed": "50",
+        "name": "Avenue de Paris",
+        "name:etymology:wikidata": "Q90",
+        "old_ref": "N 34",
+        "oneway": "yes",
+        "parking:both": "no",
+        "ref": "D 120",
+        "sidewalk:left": "no",
+        "sidewalk:right": "separate",
+        "sidewalk:right:surface": "paving_stones",
+        "smoothness": "good",
+        "source:maxspeed": "sign",
+        "surface": "asphalt",
+        "turn:lanes": "left|through|through;right"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.4351145,
+            48.8449456
+          ],
+          [
+            2.4346896,
+            48.8449855
+          ],
+          [
+            2.4345557,
+            48.8449623
+          ]
+        ]
+      },
+      "id": "way/598605587"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/598605588",
+        "cycleway:left": "no",
+        "cycleway:right": "lane",
+        "cycleway:right:lane": "exclusive",
+        "grande_circulation": "yes",
+        "highway": "primary",
+        "lanes": "2",
+        "lit": "yes",
+        "maxspeed": "50",
+        "name": "Avenue de Paris",
+        "name:etymology:wikidata": "Q90",
+        "old_ref": "N 34",
+        "oneway": "yes",
+        "parking:both": "no",
+        "ref": "D 120",
+        "sidewalk:left": "no",
+        "sidewalk:right": "separate",
+        "sidewalk:right:surface": "paving_stones",
+        "smoothness": "good",
+        "source:maxspeed": "sign",
+        "surface": "asphalt"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.4345557,
+            48.8449623
+          ],
+          [
+            2.4346732,
+            48.8449184
+          ],
+          [
+            2.4347521,
+            48.8449117
+          ],
+          [
+            2.4349236,
+            48.8448943
+          ],
+          [
+            2.4352822,
+            48.844858
+          ],
+          [
+            2.4355496,
+            48.8448478
+          ],
+          [
+            2.4357906,
+            48.8448465
+          ]
+        ]
+      },
+      "id": "way/598605588"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/598605589",
+        "cycleway:left": "no",
+        "cycleway:right": "lane",
+        "cycleway:right:lane": "exclusive",
+        "grande_circulation": "yes",
+        "highway": "primary",
+        "lanes": "2",
+        "lit": "yes",
+        "maxspeed": "50",
+        "name": "Avenue de Paris",
+        "name:etymology:wikidata": "Q90",
+        "old_ref": "N 34",
+        "oneway": "yes",
+        "parking:both": "no",
+        "ref": "D 120",
+        "sidewalk:left": "no",
+        "sidewalk:right": "separate",
+        "sidewalk:right:surface": "paving_stones",
+        "smoothness": "good",
+        "source:maxspeed": "sign",
+        "surface": "asphalt"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.4357906,
+            48.8448465
+          ],
+          [
+            2.4355503,
+            48.8449032
+          ],
+          [
+            2.4351145,
+            48.8449456
+          ]
+        ]
+      },
+      "id": "way/598605589"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/925528085",
+        "cycleway:both": "no",
+        "highway": "residential",
+        "lanes": "1",
+        "lit": "yes",
+        "maxspeed": "30",
+        "maxspeed:type": "FR:zone30",
+        "name": "Rue Jean Moulin",
+        "note": "Expérimentation jusqu'au 16 mai 2021 d'inversion de sens de circulation Ouest-Est Rue Jean Moulin",
+        "oneway": "yes",
+        "parking:left": "street_side",
+        "parking:left:orientation": "parallel",
+        "parking:right": "no",
+        "sidewalk:both": "separate",
+        "sidewalk:both:surface": "asphalt",
+        "smoothness": "intermediate",
+        "surface": "asphalt",
+        "width": "3"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.43463,
+            48.8455238
+          ],
+          [
+            2.4345665,
+            48.8455288
+          ],
+          [
+            2.4333692,
+            48.8456295
+          ],
+          [
+            2.4328054,
+            48.8456889
+          ],
+          [
+            2.4323631,
+            48.8457517
+          ],
+          [
+            2.4322742,
+            48.8457651
+          ]
+        ]
+      },
+      "id": "way/925528085"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1118356495",
+        "access": "private",
+        "highway": "service",
+        "motor_vehicle": "private",
+        "surface": "sett"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.4363661,
+            48.8444904
+          ],
+          [
+            2.4363851,
+            48.8445834
+          ]
+        ]
+      },
+      "id": "way/1118356495"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1219082422",
+        "highway": "service",
+        "lit": "yes",
+        "service": "driveway",
+        "surface": "paving_stones"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.4365257,
+            48.8453244
+          ],
+          [
+            2.436622,
+            48.8453177
+          ],
+          [
+            2.43664,
+            48.8453165
+          ]
+        ]
+      },
+      "id": "way/1219082422"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1329940889",
+        "cycleway:both": "no",
+        "highway": "residential",
+        "lit": "yes",
+        "maxspeed": "30",
+        "name": "Rue de Montreuil",
+        "oneway": "yes",
+        "oneway:bicycle": "no",
+        "parking:left": "street_side",
+        "parking:left:orientation": "parallel",
+        "parking:right": "no",
+        "sidewalk:both": "separate",
+        "sidewalk:both:surface": "paving_stones",
+        "smoothness": "good",
+        "source:maxspeed": "FR:zone30",
+        "surface": "sett",
+        "width": "3.3"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.4346798,
+            48.8469686
+          ],
+          [
+            2.4346811,
+            48.8466476
+          ],
+          [
+            2.4346796,
+            48.8465548
+          ]
+        ]
+      },
+      "id": "way/1329940889"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1331055168",
+        "access:lanes:forward": "yes|yes|no",
+        "bus:lanes:forward": "yes|yes|designated",
+        "cycleway:both": "lane",
+        "cycleway:both:lane": "exclusive",
+        "grande_circulation": "yes",
+        "highway": "primary",
+        "lanes": "5",
+        "lanes:backward": "2",
+        "lanes:forward": "3",
+        "lit": "yes",
+        "maxspeed": "50",
+        "name": "Avenue de Paris",
+        "name:etymology:wikidata": "Q90",
+        "old_ref": "N 34",
+        "parking:left": "street_side",
+        "parking:left:orientation": "parallel",
+        "parking:right": "no",
+        "ref": "D 120",
+        "sidewalk:both": "separate",
+        "smoothness": "good",
+        "surface": "asphalt"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.4370931,
+            48.8447415
+          ],
+          [
+            2.4371781,
+            48.8447338
+          ],
+          [
+            2.4372754,
+            48.8447264
+          ],
+          [
+            2.4379128,
+            48.8446777
+          ]
+        ]
+      },
+      "id": "way/1331055168"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1331091772",
+        "cycleway:both": "no",
+        "highway": "residential",
+        "lit": "yes",
+        "maxspeed": "30",
+        "maxspeed:type": "FR:zone30",
+        "name": "Rue Eugénie Gérard",
+        "oneway": "yes",
+        "oneway:bicycle": "no",
+        "parking:both": "no",
+        "sidewalk:left": "separate",
+        "sidewalk:left:surface": "asphalt",
+        "sidewalk:right": "no",
+        "smoothness": "excellent",
+        "surface": "asphalt",
+        "width": "3"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.4334833,
+            48.8462094
+          ],
+          [
+            2.4334363,
+            48.8462057
+          ],
+          [
+            2.4326337,
+            48.8463202
+          ],
+          [
+            2.4325711,
+            48.8463302
+          ]
+        ]
+      },
+      "id": "way/1331091772"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1430519096",
+        "cycleway:both": "no",
+        "highway": "residential",
+        "lit": "yes",
+        "maxspeed": "30",
+        "name": "Rue de Montreuil",
+        "oneway": "yes",
+        "oneway:bicycle": "no",
+        "parking:left": "street_side",
+        "parking:left:orientation": "parallel",
+        "parking:right": "no",
+        "sidewalk:both": "separate",
+        "sidewalk:both:surface": "paving_stones",
+        "smoothness": "good",
+        "source:maxspeed": "FR:zone30",
+        "surface": "sett",
+        "width": "3.3"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.4346796,
+            48.8465548
+          ],
+          [
+            2.4346772,
+            48.8464696
+          ],
+          [
+            2.4346762,
+            48.8463605
+          ]
+        ]
+      },
+      "id": "way/1430519096"
+    }
+  ]
+}

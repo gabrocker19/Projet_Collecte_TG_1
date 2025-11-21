@@ -687,7 +687,7 @@ public class Affichage {
         btn.setBackground(BTN_NORMAL);
         btn.setForeground(TEXT_COLOR);
         btn.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(BTN_BORDER), BorderFactory.createEmptyBorder(8, 12, 8, 12)));
-        btn.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
+        btn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
         // === Effet hover (Option 2) ===
         btn.addMouseListener(new MouseAdapter() {
